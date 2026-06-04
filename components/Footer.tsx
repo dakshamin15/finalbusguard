@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5 mb-3">
-              <Image src="/logo.png" alt="BusGuard logo" width={28} height={28} />
+              <Image src="/image.png" alt="BusGuard logo" width={80} height={80} style={{ marginRight: "-16px" }} />
               <span className="font-bold text-xl heading-tight" style={{ color: "#ffffff" }}>
                 Bus<span style={{ color: "#f97316" }}>Guard</span>
               </span>
@@ -47,10 +47,10 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-[0.18em] mb-4" style={{ color: "#666666" }}>Contact</h4>
             <div className="flex flex-col gap-2.5 text-sm" style={{ color: "#aaaaaa" }}>
-              <a href="mailto:busguardhelp@gmail.com" className="transition-colors duration-200"
+              <a href="mailto:info@busguard.net" className="transition-colors duration-200"
                 onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#ffffff")}
                 onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#aaaaaa")}>
-                busguardhelp@gmail.com
+                info@busguard.net
               </a>
               <span>Henrico County, VA</span>
               <Link href="/contact" className="transition-colors duration-200"
@@ -71,7 +71,6 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 gap-3"
           style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <p className="text-xs" style={{ color: "#666666" }}>© {new Date().getFullYear()} BusGuard. All rights reserved.</p>
-          <p className="text-xs" style={{ color: "#555555" }}>211 controlled trials · 95.3% true positive rate</p>
         </div>
       </div>
     </footer>
