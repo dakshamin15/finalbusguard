@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --orange: #f97316;
+  --orange-hover: #ea6c0a;
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --bg-main: #ffffff;
+  --bg-off: #f2f2ef;
+  --bg-card: #f8f8f5;
+  --card-border: rgba(0, 0, 0, 0.08);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: #ffffff;
+  color: #111111;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 800;
+}
+
+::selection { background: #f97316; color: #fff; }
+
+.stat-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.heading-tight { letter-spacing: -0.03em; }
+
+/* ─── BusGuardHero animation classes ───────────────────────────────────────── */
+
+.bgh-title-wrap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-80px);
+  text-align: center;
+  padding-top: 80px;
+  padding-bottom: 6px;
+  opacity: 0;
+}
+
+.bgh-title-wrap.bgh-slide-in {
+  animation: bghSlideDown 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes bghSlideDown {
+  from { opacity: 0; transform: translateX(-50%) translateY(-80px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.bgh-brand-word {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: 0.38em;
+  color: #111;
+  text-transform: uppercase;
+  display: block;
+  transform: translateY(56px);
+  opacity: 0;
+}
+
+.bgh-brand-word.bgh-pop {
+  animation: bghPopUp 0.78s cubic-bezier(0.34, 1.48, 0.64, 1) forwards;
+}
+
+@keyframes bghPopUp {
+  from { transform: translateY(56px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.bgh-brand-sub {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  color: #aaa;
+  margin-top: 8px;
+  text-transform: uppercase;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.bgh-brand-sub.bgh-show { opacity: 1; }
+
+.bgh-reveal-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  background: #f2f2ef;
+  opacity: 0;
+  transition: none;
+}
+
+.bgh-reveal-wrap.bgh-reveal-show { opacity: 1; }
+
+.bgh-reveal-word {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: clamp(48px, 7.5vw, 96px);
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  color: #f97316;
+  text-transform: uppercase;
+  display: block;
+  white-space: nowrap;
+  transform: translateY(140px);
+  opacity: 0;
+}
+
+.bgh-reveal-word.bgh-big-pop {
+  animation: bghBigPop 0.92s cubic-bezier(0.34, 1.46, 0.64, 1) forwards;
+}
+
+@keyframes bghBigPop {
+  from { transform: translateY(140px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+.bgh-reveal-sub {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  color: #aaa;
+  margin-top: 16px;
+  text-transform: uppercase;
+  display: block;
+  opacity: 0;
+  transition: opacity 1.0s ease;
+}
+
+.bgh-reveal-sub.bgh-show { opacity: 1; }
