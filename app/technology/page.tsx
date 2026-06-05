@@ -179,10 +179,10 @@ function StickyTimeline() {
 
         {/* ── Content ── */}
         <div className="relative z-10 flex flex-col h-full max-w-[1000px] mx-auto w-full px-6 md:px-10"
-          style={{ paddingTop: "100px", paddingBottom: "40px" }}>
+          style={{ paddingTop: "72px", paddingBottom: "28px" }}>
 
           {/* Header row */}
-          <div className="flex items-center justify-between mb-12 md:mb-16 flex-shrink-0">
+          <div className="flex items-center justify-between mb-8 md:mb-10 flex-shrink-0">
             <div>
               <span className="text-[11px] font-bold uppercase tracking-[0.28em]" style={{ color: "#f97316" }}>
                 Violation → Alert
@@ -225,9 +225,9 @@ function StickyTimeline() {
                     initial={{ color: "#f97316", opacity: 0.9 }}
                     animate={{ color: "rgba(249,115,22,0.18)", opacity: 1 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="font-black heading-tight mb-4 select-none"
+                    className="font-black heading-tight mb-3 select-none"
                     style={{
-                      fontSize: "clamp(6rem, 15vw, 11rem)",
+                      fontSize: "clamp(4.5rem, 11vw, 8rem)",
                       lineHeight: 1,
                       letterSpacing: "-0.04em",
                     }}
@@ -235,7 +235,7 @@ function StickyTimeline() {
                     0{activeStep + 1}
                   </motion.div>
 
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-3 mb-3">
                     <span
                       className="text-[11px] font-bold uppercase tracking-[0.28em] px-3 py-1.5 rounded-full"
                       style={{ background: "rgba(249,115,22,0.18)", color: "#f97316", border: "1px solid rgba(249,115,22,0.35)" }}
@@ -251,12 +251,12 @@ function StickyTimeline() {
                   </div>
 
                   <h2
-                    className="font-black heading-tight mb-5"
-                    style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#ffffff", lineHeight: 1.05 }}
+                    className="font-black heading-tight mb-4"
+                    style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.5rem)", color: "#ffffff", lineHeight: 1.08 }}
                   >
                     {step.title}
                   </h2>
-                  <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.62)", maxWidth: "42ch" }}>
+                  <p className="text-[15px]" style={{ color: "rgba(255,255,255,0.62)", maxWidth: "44ch", lineHeight: 1.65 }}>
                     {step.description}
                   </p>
                 </div>
@@ -270,7 +270,7 @@ function StickyTimeline() {
           </div>
 
           {/* Bottom progress bar */}
-          <div className="flex-shrink-0 mt-8">
+          <div className="flex-shrink-0 mt-6 pt-5" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
             <div className="flex justify-between mb-2.5">
               {timelineSteps.map((s, i) => (
                 <span

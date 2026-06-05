@@ -37,10 +37,10 @@ export default function SocialProof() {
             <div className="w-px h-8" style={{ background: "#f97316" }} />
             <div>
               <p className="text-sm font-semibold" style={{ color: "#ffffff" }}>
-                Director of Pupil Transportation
+                Jim Ellis
               </p>
               <p className="text-xs mt-0.5" style={{ color: "#aaaaaa" }}>
-                Henrico County Public Schools
+                Director of Pupil Transportation, Henrico County Public Schools
               </p>
             </div>
           </div>

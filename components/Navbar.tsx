@@ -9,7 +9,6 @@ const navLinks = [
   { href: "/technology", label: "Technology" },
   { href: "/impact", label: "Impact" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -54,21 +53,15 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <Link
             href="/contact"
-            className="text-sm px-4 py-2 rounded-lg font-medium transition-all duration-200"
-            style={{ border: "1px solid rgba(0,0,0,0.18)", color: "#111111" }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.35)")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.18)")}
+            className="flex items-center gap-1.5 text-sm px-5 py-2 rounded-full font-semibold text-white transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-800"
+            style={{ backgroundColor: "#111111" }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "#2a2a2a")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "#111111")}
           >
             Contact Sales
-          </Link>
-          <Link
-            href="/contact"
-            className="text-sm px-4 py-2 rounded-lg font-semibold text-white transition-all duration-200"
-            style={{ backgroundColor: "#f97316" }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "#ea6c0a")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "#f97316")}
-          >
-            Get a Demo
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style={{ opacity: 0.75 }}>
+              <path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </Link>
         </div>
 
@@ -107,16 +100,13 @@ export default function Navbar() {
           ))}
           <div className="flex flex-col gap-2 pt-2" style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}>
             <Link href="/contact"
-              className="text-sm px-4 py-2 rounded-lg text-center font-medium"
-              style={{ border: "1px solid rgba(0,0,0,0.18)", color: "#111111" }}
+              className="flex items-center justify-center gap-1.5 text-sm px-4 py-2.5 rounded-full font-semibold text-white transition-colors duration-200 cursor-pointer"
+              style={{ backgroundColor: "#111111" }}
               onClick={() => setMenuOpen(false)}>
               Contact Sales
-            </Link>
-            <Link href="/contact"
-              className="text-sm px-4 py-2 rounded-lg font-semibold text-white text-center"
-              style={{ backgroundColor: "#f97316" }}
-              onClick={() => setMenuOpen(false)}>
-              Get a Demo
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style={{ opacity: 0.75 }}>
+                <path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </Link>
           </div>
         </div>

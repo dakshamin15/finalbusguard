@@ -9,7 +9,7 @@ export default function ContactPage() {
 
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
-    name: "", email: "", organization: "", role: "", message: "", type: "demo",
+    name: "", email: "", organization: "", role: "", message: "", type: "sales",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -64,7 +64,7 @@ export default function ContactPage() {
             <span style={{ color: "#f97316" }}>Safety.</span>
           </h1>
           <p className="text-lg leading-relaxed max-w-lg" style={{ color: "#555555" }}>
-            Request a demo, ask about pricing, or discuss a district deployment.
+            Contact sales, ask about pricing, or discuss a district deployment.
             We respond within one business day.
           </p>
         </motion.div>
@@ -178,7 +178,7 @@ export default function ContactPage() {
                 <div>
                   <label className="text-xs mb-1.5 block font-medium" style={{ color: "#666" }}>Inquiry Type</label>
                   <div className="flex gap-2 flex-wrap">
-                    {["demo", "pricing", "technical", "partnership"].map(t => (
+                    {["sales", "pricing", "technical", "partnership"].map(t => (
                       <button key={t} type="button"
                         onClick={() => setForm(prev => ({ ...prev, type: t }))}
                         className="px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200"
@@ -187,7 +187,7 @@ export default function ContactPage() {
                           : { background: "#fff", border: "1px solid rgba(0,0,0,0.15)", color: "#666" }
                         }
                       >
-                        {t === "demo" ? "Request Demo" : t === "pricing" ? "Pricing" : t === "technical" ? "Technical" : "Partnership"}
+                        {t === "sales" ? "Contact Sales" : t === "pricing" ? "Pricing" : t === "technical" ? "Technical" : "Partnership"}
                       </button>
                     ))}
                   </div>

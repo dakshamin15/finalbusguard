@@ -56,7 +56,7 @@ export default function Footer() {
               <Link href="/contact" className="transition-colors duration-200"
                 onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#ffffff")}
                 onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#aaaaaa")}>
-                Request a Demo
+                Contact Sales
               </Link>
             </div>
           </div>

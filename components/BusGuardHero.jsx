@@ -105,9 +105,11 @@ export default function BusGuardHero() {
       const piAp = M(B(0.055, 0.16, 0.24), inner); piAp.position.set(-0.031, 0.06, 0.08); leftWall.add(piAp);
       const piFrame = M(T(0.08, 0.012, 8, 20), accent); piFrame.rotation.z = Math.PI/2; piFrame.position.set(-0.046, 0.06, 0.08); leftWall.add(piFrame);
 
-      // ── RIGHT WALL (center = (W/2-TH/2, 0, 0))
+      // ── RIGHT WALL (center = (W/2-TH/2, 0, 0)) — camera barrel exits through center aperture
       const rightWall = new THREE.Group();
       rightWall.add(M(B(TH, H, D), shell));
+      const camAp = M(C(0.092, 0.092, TH + 0.010, 24), inner); camAp.rotation.set(0, 0, Math.PI/2); rightWall.add(camAp);
+      const camApRing = M(T(0.082, 0.010, 8, 24), accent); camApRing.rotation.set(0, 0, Math.PI/2); camApRing.position.set(TH/2 + 0.005, 0, 0); rightWall.add(camApRing);
 
       // ── BACK WALL (center = (0, 0, -D/2+TH/2))
       // vent slits: world=(-0.5+i*0.26, 0.2, -D/2+0.005) → local z = 0.005-TH/2 = -0.041
@@ -118,18 +120,8 @@ export default function BusGuardHero() {
       }
 
       // ── FRONT WALL (center = (0, 0, D/2-TH/2) = (0,0,0.729))
-      // All decorations in local space (relative to front wall center):
-      //   camRecess world z=D/2+0.03=0.805 → local z=0.805-0.729=0.076
-      //   camRing   world z=D/2+0.01=0.785 → local z=0.056
-      //   lensShadow world z=D/2+0.065=0.84 → local z=0.111
-      //   aLine top: y=H/2-0.009=0.666, z=TH/2=0.046
-      //   aBot: y=-H/2+0.009=-0.666, z=0.046
-      //   plate: world=(-0.6,-0.35,D/2+0.002) → local z=0.048
       const frontWall = new THREE.Group();
       frontWall.add(M(B(W, H, TH), shell));
-      const camRecess = M(B(0.52, 0.40, 0.14), inner); camRecess.position.set(0.50, 0.04, 0.076); frontWall.add(camRecess);
-      const camRing = M(T(0.19, 0.018, 10, 32), accent); camRing.rotation.x = Math.PI/2; camRing.position.set(0.50, 0.04, 0.056); frontWall.add(camRing);
-      const lensShadow = M(new THREE.CircleGeometry(0.17, 28), inner); lensShadow.rotation.x = Math.PI/2; lensShadow.position.set(0.50, 0.04, 0.111); frontWall.add(lensShadow);
       const aLine = M(B(W, 0.018, 0.018), accent); aLine.position.set(0, H/2-0.009, 0.046); frontWall.add(aLine);
       const aBot  = M(B(W, 0.018, 0.018), accent); aBot.position.set(0, -H/2+0.009, 0.046); frontWall.add(aBot);
       const plate = M(B(0.7, 0.14, 0.005), S(0xeeeeea, 0.85, 0.02)); plate.position.set(-0.6, -0.35, 0.048); frontWall.add(plate);
@@ -292,28 +284,80 @@ export default function BusGuardHero() {
       return g;
     }
 
-    // ── Varifocal camera: barrel along +Z, final pos puts lens through front face camRecess
-    // lens at local z=0.540; final pos z=0.31 → lens world z=0.85 (through front face at z=0.729)
+    // ── Varifocal camera: barrel along local +Z, group rotated [0,π/2,0] → barrel points +X world
+    // lens at local z≈0.450; group at world x=0.90 → lens exits right wall (x=1.2) at world x=1.35
     function buildCamera() {
       const g = new THREE.Group();
-      const darkMat=S(0x24242c,0.52,0.42), pcbGrn=S(0x1e6622,0.58,0.06);
-      const box1=M(B(0.21,0.19,0.215),darkMat); box1.position.z=-0.055; g.add(box1);
-      const pcbBack=M(B(0.17,0.15,0.005),pcbGrn); pcbBack.position.z=-0.163; g.add(pcbBack);
-      const usb=M(B(0.045,0.038,0.062),S(0x888888,0.35,0.75)); usb.position.set(0,-0.04,-0.165); g.add(usb);
-      const usbCav=M(B(0.032,0.025,0.042),S(0x444452,0.6)); usbCav.position.set(0,-0.04,-0.166); g.add(usbCav);
-      const bolt=M(C(0.015,0.015,0.025,10),S(0x888870,0.2,0.9)); bolt.rotation.z=Math.PI/2; bolt.position.set(0.112,0.065,-0.055); g.add(bolt);
-      const flange=M(C(0.098,0.104,0.018,24),S(0x1e1e24,0.45,0.55)); flange.rotation.x=Math.PI/2; flange.position.z=0.06; g.add(flange);
-      const bar1=M(C(0.092,0.100,0.16,24),S(0x1a1a22,0.48,0.48)); bar1.rotation.x=Math.PI/2; bar1.position.z=0.185; g.add(bar1);
-      const zRing=M(C(0.100,0.100,0.072,24),S(0x323240,0.42,0.38)); zRing.rotation.x=Math.PI/2; zRing.position.z=0.11; g.add(zRing);
-      for(let i=0;i<20;i++){const kn=M(B(0.0038,0.0038,0.072),S(0x464654,0.6,0.3)); const a=(i/20)*Math.PI*2; kn.position.set(Math.cos(a)*0.100,Math.sin(a)*0.100,0.11); g.add(kn);}
-      const bar2=M(C(0.076,0.088,0.20,24),S(0x181820,0.44,0.52)); bar2.rotation.x=Math.PI/2; bar2.position.z=0.365; g.add(bar2);
-      const fRing=M(C(0.082,0.082,0.058,24),S(0x2e2e3c,0.38,0.42)); fRing.rotation.x=Math.PI/2; fRing.position.z=0.28; g.add(fRing);
-      for(let i=0;i<8;i++){const mk=M(B(0.0025,0.025,0.003),S(0xddddcc,0.9,0)); const a=(i/8)*Math.PI*2; mk.position.set(Math.cos(a)*0.082,Math.sin(a)*0.082,0.31); g.add(mk);}
-      const bar3=M(C(0.068,0.074,0.07,24),S(0x111118,0.42,0.55)); bar3.rotation.x=Math.PI/2; bar3.position.z=0.500; g.add(bar3);
-      const fBezel=M(T(0.070,0.010,8,24),S(0xb0b0c0,0.18,0.88)); fBezel.rotation.x=Math.PI/2; fBezel.position.z=0.538; g.add(fBezel);
-      const glass=M(new THREE.CircleGeometry(0.062,28),S(0x0a1e38,0.04,0.96,{emissive:0x001428,emissiveIntensity:0.7})); glass.rotation.x=Math.PI/2; glass.position.z=0.540; g.add(glass);
-      const hilight=M(new THREE.CircleGeometry(0.022,16),S(0x2255aa,0.04,0.96,{emissive:0x1133aa,emissiveIntensity:0.9})); hilight.rotation.x=Math.PI/2; hilight.position.z=0.542; g.add(hilight);
-      const cable=M(C(0.017,0.017,0.6,10),S(0x0a0a0e,0.88,0.04)); cable.position.set(0.06,-0.2,-0.24); cable.rotation.z=0.38; g.add(cable);
+      const dark  = S(0x18181e, 0.60, 0.38);
+      const gold  = S(0xaa7a08, 0.18, 0.85);
+      const scrw  = S(0xc0a020, 0.22, 0.88);
+      const chrom = S(0xc4c4bc, 0.12, 0.90);
+
+      // ── Boxy body (CS-mount camera body like the reference image)
+      const body = M(B(0.22, 0.22, 0.22), dark); body.position.z = -0.11; g.add(body);
+      // Corner screws on front face
+      [[-0.08,-0.08],[0.08,-0.08],[-0.08,0.08],[0.08,0.08]].forEach(([x,y]) => {
+        const sc = M(C(0.009,0.009,0.005,6), S(0x888870,0.22,0.88)); sc.rotation.x=Math.PI/2; sc.position.set(x,y,0.003); g.add(sc);
+      });
+      // PCB back plate + USB
+      const pcbPl = M(B(0.18,0.18,0.004), S(0x1e6622,0.58,0.06)); pcbPl.position.z=-0.222; g.add(pcbPl);
+      const usb   = M(B(0.038,0.028,0.048), S(0x888888,0.38,0.72)); usb.position.set(0,-0.065,-0.224); g.add(usb);
+      const usbC  = M(B(0.024,0.016,0.030), S(0x444452,0.6));       usbC.position.set(0,-0.065,-0.225); g.add(usbC);
+      // Cable stub
+      const cable = M(C(0.014,0.014,0.50,10), S(0x0a0a0e,0.88,0.04)); cable.position.set(0.04,-0.12,-0.26); cable.rotation.z=0.28; g.add(cable);
+
+      // ── Lens mount ring (at body front face, z=0)
+      const mntRing = M(C(0.072,0.072,0.010,24), S(0x28283a,0.42,0.50)); mntRing.rotation.x=Math.PI/2; mntRing.position.z=0.001; g.add(mntRing);
+
+      // ── Barrel section 1 — focus region (z 0→0.13, r=0.078)
+      const barS1 = M(C(0.078,0.078,0.130,28), dark); barS1.rotation.x=Math.PI/2; barS1.position.z=0.065; g.add(barS1);
+      // Brass focus ring (the gold band visible in the image)
+      const focRing = M(C(0.082,0.082,0.030,28), gold); focRing.rotation.x=Math.PI/2; focRing.position.z=0.098; g.add(focRing);
+      // Knurling on focus ring
+      for(let i=0;i<22;i++){
+        const a=(i/22)*Math.PI*2;
+        const kn=M(B(0.002,0.030,0.006),S(0x7a5c06,0.3,0.6));
+        kn.position.set(Math.cos(a)*0.083,Math.sin(a)*0.083,0.098); kn.rotation.y=a; g.add(kn);
+      }
+      // Separation groove
+      const sep1 = M(T(0.080,0.004,7,24), S(0x404050,0.30,0.55)); sep1.rotation.x=Math.PI/2; sep1.position.z=0.131; g.add(sep1);
+
+      // ── Barrel section 2 — zoom region (z 0.13→0.30, r=0.074)
+      const barS2 = M(C(0.074,0.074,0.170,28), dark); barS2.rotation.x=Math.PI/2; barS2.position.z=0.215; g.add(barS2);
+      // Two thumbscrews (matching the silver grub screws in the reference)
+      [0.178, 0.275].forEach(z => {
+        const sc = M(C(0.009,0.009,0.040,8), scrw); sc.rotation.z=Math.PI/2; sc.position.set(0.082,0,z); g.add(sc);
+        const hd = M(C(0.014,0.014,0.008,8), S(0xb8a030,0.18,0.90)); hd.rotation.z=Math.PI/2; hd.position.set(0.092,0,z); g.add(hd);
+      });
+      const sep2 = M(T(0.076,0.004,7,24), S(0x404050,0.30,0.55)); sep2.rotation.x=Math.PI/2; sep2.position.z=0.300; g.add(sep2);
+
+      // ── Barrel section 3 — front (z 0.30→0.44, r=0.067)
+      const barS3 = M(C(0.067,0.067,0.140,28), dark); barS3.rotation.x=Math.PI/2; barS3.position.z=0.370; g.add(barS3);
+
+      // ── Front bezel (chrome ring) — wider for a proper lens housing
+      const bezel = M(T(0.076,0.016,10,32), chrom); bezel.rotation.x=Math.PI/2; bezel.position.z=0.440; g.add(bezel);
+
+      // ── Dark inner sleeve visible behind the dome
+      const lensSleeve = M(C(0.061,0.061,0.014,28), dark); lensSleeve.rotation.x=Math.PI/2; lensSleeve.position.z=0.448; g.add(lensSleeve);
+
+      // ── Convex glass dome — apex at local z≈0.498, clearly 3D from any angle
+      const lensDome = M(
+        new THREE.SphereGeometry(0.056, 32, 16, 0, Math.PI*2, 0, Math.PI*0.38),
+        new THREE.MeshStandardMaterial({color:0x04080f, roughness:0.02, metalness:0.97, emissive:0x060c22, emissiveIntensity:0.9})
+      );
+      lensDome.rotation.x = Math.PI/2; lensDome.position.z = 0.442; g.add(lensDome);
+
+      // ── Iridescent coating rings layered just in front of dome apex
+      const ring1 = M(new THREE.RingGeometry(0.020,0.048,28),
+        new THREE.MeshStandardMaterial({color:0x1840cc,roughness:0.01,metalness:0.96,emissive:0x0e28a0,emissiveIntensity:1.8}));
+      ring1.rotation.x = Math.PI/2; ring1.position.z = 0.500; g.add(ring1);
+      const ring2 = M(new THREE.RingGeometry(0.007,0.016,24),
+        new THREE.MeshStandardMaterial({color:0x00b8aa,roughness:0.01,metalness:0.96,emissive:0x008877,emissiveIntensity:1.6}));
+      ring2.rotation.x = Math.PI/2; ring2.position.z = 0.501; g.add(ring2);
+      const dot = M(new THREE.CircleGeometry(0.005,12),
+        new THREE.MeshStandardMaterial({color:0x90d0ff,roughness:0.01,metalness:0.95,emissive:0x5099dd,emissiveIntensity:2.5}));
+      dot.rotation.x = Math.PI/2; dot.position.z = 0.502; g.add(dot);
+
       return g;
     }
 
@@ -349,14 +393,14 @@ export default function BusGuardHero() {
     scene.add(pcb, accel, edgeProc, wifi, buzzers, varifocal, piCam);
 
     // ── Assembly sequence
-    // varifocal: rotation [0,0,0] so barrel faces +Z, lens at local z=0.54 → world z=0.31+0.54=0.85 (through camRecess)
+    // varifocal: rotation [0,π/2,0] so barrel faces +X world; lens at local z=0.451 → world x=0.90+0.451=1.35 (protrudes past right wall at x=1.2)
     const PIECES = [
       { obj: pcb,       key:"pcb",       name:"Raspberry Pi 3B+",       final:{p:[0,-0.44,0.02],        r:[0,0,0]},            start:{p:[0,-6.5,0.3],         r:[0,0.4,0]}           },
       { obj: edgeProc,  key:"edgeProc",  name:"Edge Processor",          final:{p:[-0.58,-0.08,-0.12],   r:[0,0,0]},            start:{p:[-7,0.6,-0.12],       r:[0,-0.6,0]}          },
       { obj: accel,     key:"accel",     name:"3-Axis Accelerometer",    final:{p:[0.48,0.12,0.22],       r:[0,0,0]},            start:{p:[6,3.5,1.2],          r:[0,0.8,0.4]}         },
       { obj: wifi,      key:"wifi",      name:"WiFi Antenna",            final:{p:[0.18,-0.30,0.40],      r:[0,0,0]},            start:{p:[1.5,-6,3.8],         r:[0.5,0,0]}           },
       { obj: buzzers,   key:"buzzers",   name:"100dB Buzzers x3",        final:{p:[-0.62,0.24,0.08],      r:[0,-0.25,0]},        start:{p:[-6.5,4.5,0.8],       r:[0,-0.5,0.3]}        },
-      { obj: varifocal, key:"varifocal", name:"1080p Varifocal Camera",  final:{p:[0.50,0.04,0.31],       r:[0,0,0]},            start:{p:[0.50,2.8,5.5],       r:[0.4,0.05,0.06]}     },
+      { obj: varifocal, key:"varifocal", name:"1080p Varifocal Camera",  final:{p:[0.90,0.00,0.00],       r:[0,Math.PI/2,0]},    start:{p:[7.5,1.0,0.0],        r:[0,Math.PI/2-0.5,0]} },
       { obj: piCam,     key:"piCam",     name:"Pi Camera Module",        final:{p:[-1.06,0.07,0.09],      r:[0,Math.PI/2,0]},    start:{p:[-6.5,3.5,0.9],       r:[0.25,Math.PI/2-0.5,0]} },
     ];
 
@@ -382,7 +426,7 @@ export default function BusGuardHero() {
       { p:[7,4,2],     r:[0,0.8,0.4] },
       { p:[2,-7,4],    r:[0.5,0,0] },
       { p:[-7,5,1],    r:[0,-0.5,0.3] },
-      { p:[1.0,2.5,8], r:[0.4,0.1,0.1] }, // varifocal flies out front
+      { p:[7.5,1.5,0.5], r:[0,Math.PI/2+0.5,0.2] }, // varifocal flies out right
       { p:[-7,4,1],    r:[0.3,Math.PI/2-0.5,0] },
     ];
 
