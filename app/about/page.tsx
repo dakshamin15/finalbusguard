@@ -12,13 +12,13 @@ const founders = [
     bio: "Leads day-to-day operations, partnerships, and go-to-market strategy. Keeps the team moving and connected with district stakeholders.",
   },
   {
-    name: "Daksh",
+    name: "Daksh Amin",
     role: "Co-Founder — Marketing",
     photo: "/daksh.png",
     bio: "Drives BusGuard's brand, outreach, and competitive positioning. Responsible for pitch strategy and external communications.",
   },
   {
-    name: "Kshiteej",
+    name: "Kshiteej Herode",
     role: "Co-Founder — Technology",
     photo: "/kshiteej.png",
     bio: "Leads the computer vision model, hardware integration, and software architecture. The technical backbone of the BusGuard system.",

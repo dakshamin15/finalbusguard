@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import Achievements from "@/components/Achievements";
+import BusGuardExplainer from "@/components/BusGuardExplainer";
 import SocialProof from "@/components/SocialProof";
 import Pricing from "@/components/Pricing";
 
@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <BusGuardHero />
-      <Achievements />
+      <BusGuardExplainer />
       <SocialProof />
       <Pricing />
     </>

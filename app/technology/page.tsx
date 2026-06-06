@@ -208,7 +208,7 @@ function StickyTimeline() {
           </div>
 
           {/* Main animated content */}
-          <div className="flex-1 flex items-center min-h-0">
+          <div className="flex-1 flex items-start min-h-0 pt-4">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeStep}
