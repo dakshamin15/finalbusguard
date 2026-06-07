@@ -19,6 +19,7 @@ const events = [
     photos: [
       "/Henrico%20Innovation%20Challenge/Pitching.png",
       "/Henrico%20Innovation%20Challenge/Trifold.png",
+      "/Henrico%20Innovation%20Challenge/Henrico%20Innovation%20Challenge%20Certificate.jpg",
     ],
   },
   {
@@ -55,7 +56,7 @@ const events = [
     id: "innospark",
     date: "April 2026",
     name: "Pitch Competition",
-    badge: "Top 10/875 , Finalist",
+    badge: "Top 10/875 - Finalist",
     description:
       "Placed top 10 out of 875 global pitches, earning Finalist recognition for innovation and real-world impact on student transportation safety.",
     logo: "/InnoSpark/InnoSpark-Logo.avif",
@@ -187,6 +188,31 @@ function CertStack({ photos, onPhotoClick }: { photos: string[]; onPhotoClick: (
 /* ── Photo grid (non-Diamond) ─────────────────────────────────────────── */
 
 function PhotoGrid({ photos, onPhotoClick }: { photos: string[]; onPhotoClick: (s: string) => void }) {
+  if (photos.length === 3) {
+    return (
+      <div style={{ display: "grid", gridTemplateColumns: "3fr 2fr", gap: 8, marginBottom: 20, borderRadius: 10, overflow: "hidden", height: 260 }}>
+        {/* Left: featured photo */}
+        <div style={{ overflow: "hidden", cursor: "zoom-in", height: "100%" }} onClick={() => onPhotoClick(photos[0])}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={photos[0]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.45s cubic-bezier(0.22,1,0.36,1)" }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.06)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)"; }} />
+        </div>
+        {/* Right: two stacked */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, height: "100%" }}>
+          {photos.slice(1).map((src, i) => (
+            <div key={i} style={{ overflow: "hidden", cursor: "zoom-in", flex: 1 }} onClick={() => onPhotoClick(src)}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.45s cubic-bezier(0.22,1,0.36,1)" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.06)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)"; }} />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       style={{
