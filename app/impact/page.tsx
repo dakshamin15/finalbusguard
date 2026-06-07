@@ -46,15 +46,16 @@ const events = [
     logo: "/Blue%20Ocean/Blue-Ocean-Competition-Logo.png",
     logoHeight: 44,
     photos: [
-      "/Blue%20Ocean/Daksh-Blue%20Ocean.png",
+      "/Blue%20Ocean/Avyay-Blue%20Ocean.png",
       "/Blue%20Ocean/Kshiteej-Blue%20Ocean.png",
+      "/Blue%20Ocean/Daksh-Blue%20Ocean.png",
     ],
   },
   {
     id: "innospark",
     date: "April 2026",
     name: "Pitch Competition",
-    badge: "Top 10/875 — Finalist",
+    badge: "Top 10/875 , Finalist",
     description:
       "Placed top 10 out of 875 global pitches, earning Finalist recognition for innovation and real-world impact on student transportation safety.",
     logo: "/InnoSpark/InnoSpark-Logo.avif",
@@ -242,25 +243,25 @@ function MilestoneCard({
       }}
     >
       {/* Images */}
-      {hasPhotos && (event.id === "diamond" || event.id === "innospark") && (
+      {hasPhotos && (event.id === "diamond" || event.id === "innospark" || event.id === "blueocean") && (
         <CertStack photos={event.photos} onPhotoClick={onPhotoClick} />
       )}
-      {hasPhotos && event.id !== "diamond" && event.id !== "innospark" && (
+      {hasPhotos && event.id !== "diamond" && event.id !== "innospark" && event.id !== "blueocean" && (
         <PhotoGrid photos={event.photos} onPhotoClick={onPhotoClick} />
       )}
 
       {event.name ? (
         /* ── Named cards (Henrico, InnoSpark, VCEE):
-              logo + name on left · badge pinned to right ── */
+              logo + name on left · badge below on mobile, right on sm+ ── */
         <>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 12, marginBottom: 14 }}>
-            <div style={{ flex: 1, minWidth: 0 }}>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start" style={{ gap: 12, marginBottom: 14 }}>
+            <div style={{ minWidth: 0 }}>
               {event.logo && (
-                <div style={{ marginBottom: 10, marginTop: (event.id === "henrico" || event.id === "innospark") ? 8 : 0 }}>
+                <div style={{ marginBottom: 10 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={event.logo} alt={event.name}
-                    style={{ height: event.logoHeight, width: "auto", objectFit: "contain", objectPosition: "left", maxWidth: 360 }}
+                    style={{ height: event.logoHeight, width: "auto", objectFit: "contain", objectPosition: "left", maxWidth: 280 }}
                   />
                 </div>
               )}
@@ -274,6 +275,7 @@ function MilestoneCard({
 
             {event.badge && (
               <span
+                className="self-start"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: 7, flexShrink: 0,
                   padding: "9px 18px", borderRadius: 999,
@@ -281,7 +283,6 @@ function MilestoneCard({
                   fontSize: 13, fontWeight: 800,
                   letterSpacing: "0.05em", textTransform: "uppercase",
                   boxShadow: "0 3px 14px rgba(232,119,34,0.38)",
-                  marginTop: event.id === "innospark" ? 14 : event.id === "henrico" ? 14 : 0,
                 }}
               >
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
@@ -298,18 +299,19 @@ function MilestoneCard({
         </>
       ) : (
         /* ── Unnamed cards (Diamond, Blue Ocean):
-              logo left · badge pinned right · description below ── */
+              logo left · badge below on mobile, right on sm+ ── */
         <>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 12, marginBottom: 14 }}>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start" style={{ gap: 12, marginBottom: 14 }}>
             {event.logo && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={event.logo} alt=""
-                style={{ height: event.logoHeight, width: "auto", objectFit: "contain", objectPosition: "left", maxWidth: 180, minWidth: 0, flexShrink: 1 }}
+                style={{ height: event.logoHeight, width: "auto", objectFit: "contain", objectPosition: "left", maxWidth: 180, minWidth: 0 }}
               />
             )}
             {event.badge && (
               <span
+                className="self-start"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: 7, flexShrink: 0,
                   padding: "9px 18px", borderRadius: 999,
@@ -400,7 +402,7 @@ export default function ImpactPage() {
           </h1>
           <p className="text-lg leading-relaxed max-w-xl" style={{ color: "#555555" }}>
             Five competitions. Multiple finalist placements. A team building
-            something that matters — and proving it on every stage we step onto.
+            something that matters , and proving it on every stage we step onto.
           </p>
         </motion.div>
       </section>
@@ -432,7 +434,7 @@ export default function ImpactPage() {
 
           {/* ── Desktop ── */}
           <div className="hidden lg:block relative">
-            {/* Spine — 3px, animated grow */}
+            {/* Spine , 3px, animated grow */}
             <motion.div
               initial={{ scaleY: 0 }}
               animate={headerIn ? { scaleY: 1 } : {}}

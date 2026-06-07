@@ -14,7 +14,7 @@ export default function SocialProof() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="rounded-[6px] px-10 md:px-16 py-14"
+          className="rounded-[6px] px-6 sm:px-10 md:px-16 py-10 md:py-14"
           style={{
             background: "#1a1a1a",
             border: "1px solid rgba(255,255,255,0.08)",
@@ -28,9 +28,7 @@ export default function SocialProof() {
 
           <blockquote className="text-lg md:text-2xl font-light leading-relaxed mb-10"
             style={{ color: "#ffffff", fontStyle: "italic" }}>
-            "BusGuard addresses a real gap in school bus safety that districts across Virginia are
-            struggling with. The detection accuracy and response time are genuinely impressive for
-            a student-built system."
+            "What stands out about BusGuard is its prevention-first approach, alerting students in real time when a vehicle-violated stop arm can save a child's life, and the ability to track and map violations gives our district critical insight to make smarter, safer decisions about where to focus our efforts."
           </blockquote>
 
           <div className="flex items-center gap-4">

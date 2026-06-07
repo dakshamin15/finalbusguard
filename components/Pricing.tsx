@@ -103,7 +103,7 @@ export default function Pricing() {
                   <span className="text-xs" style={{ color: "#999999" }}>{plan.unit}</span>
                 </div>
               </div>
-              <div className="flex flex-col flex-1 mb-8">
+              <div className="flex flex-col flex-1">
                 {plan.features.map((f) => (
                   <div key={f.label} className="flex items-center justify-between py-2.5"
                     style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}>
@@ -112,27 +112,25 @@ export default function Pricing() {
                   </div>
                 ))}
               </div>
-              <Link href="/contact"
-                className="w-full py-3 rounded-lg font-semibold text-sm text-center transition-all duration-200"
-                style={plan.highlighted
-                  ? { background: "#f97316", color: "#ffffff" }
-                  : { background: "transparent", border: "1px solid rgba(0,0,0,0.18)", color: "#111111" }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  if (plan.highlighted) el.style.background = "#ea6c0a";
-                  else el.style.borderColor = "rgba(0,0,0,0.35)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  if (plan.highlighted) el.style.background = "#f97316";
-                  else el.style.borderColor = "rgba(0,0,0,0.18)";
-                }}
-              >
-                {plan.cta}
-              </Link>
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex justify-center mt-8 max-w-2xl mx-auto"
+        >
+          <Link href="/contact"
+            className="w-full py-3.5 rounded-lg font-semibold text-sm text-center transition-all duration-200"
+            style={{ background: "#f97316", color: "#ffffff" }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#ea6c0a"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#f97316"; }}
+          >
+            Start Protecting Your Students Today
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

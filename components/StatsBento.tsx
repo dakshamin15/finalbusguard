@@ -84,7 +84,7 @@ export default function StatsBento() {
                 True Positive Detection Rate
               </div>
               <p className="text-sm leading-relaxed max-w-md" style={{ color: "#666666" }}>
-                Validated across 211 controlled field trials under real-world conditions — day, night,
+                Validated across 211 controlled field trials under real-world conditions , day, night,
                 rain, and direct sun.
               </p>
             </div>
@@ -121,7 +121,7 @@ export default function StatsBento() {
             &lt; 200ms
           </div>
           <div className="text-base font-bold mb-1 heading-tight" style={{ color: "#111111" }}>Alert Trigger Latency</div>
-          <p className="text-sm" style={{ color: "#666666" }}>From violation detection to audible buzzer alert — faster than a human reaction.</p>
+          <p className="text-sm" style={{ color: "#666666" }}>From violation detection to audible buzzer alert , faster than a human reaction.</p>
         </Card>
       </div>
     </section>

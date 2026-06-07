@@ -56,7 +56,7 @@ const features = [
     eyebrow: "Core Intelligence",
     title: "Computer Vision",
     body:
-      "Our proprietary CNN is trained specifically on stop-arm violation scenarios — accounting for bus geometry, arm extension angles, vehicle trajectories, and lighting variation. 95.3% true positive rate across 211 field trials.",
+      "Our proprietary CNN is trained specifically on stop-arm violation scenarios , accounting for bus geometry, arm extension angles, vehicle trajectories, and lighting variation. 95.3% true positive rate across 211 field trials.",
     tags: ["95.3% accuracy", "Custom dataset", "Day & night", "Multi-angle"],
     terminal: {
       label: "Live Detection Feed",
@@ -72,7 +72,7 @@ const features = [
     eyebrow: "Audit Trail",
     title: "Incident Logging",
     body:
-      "Every detected violation is timestamped and stored with full metadata — GPS coordinates, image capture, vehicle speed estimate, and route ID — creating a legally defensible audit trail for district reporting.",
+      "Every detected violation is timestamped and stored with full metadata , GPS coordinates, image capture, vehicle speed estimate, and route ID , creating a legally defensible audit trail for district reporting.",
     tags: ["GPS timestamps", "Image capture", "Fleet dashboard", "Export-ready"],
     terminal: {
       label: "Incident Log",
@@ -108,7 +108,7 @@ function Terminal({ label, rows }: { label: string; rows: { k: string; v: string
     return () => clearInterval(id);
   }, []);
   return (
-    <div className="rounded-[10px] overflow-hidden w-full max-w-sm"
+    <div className="rounded-[10px] overflow-hidden w-full sm:max-w-sm"
       style={{ background: "#0d0d10", border: "1px solid rgba(255,255,255,0.07)" }}>
       <div className="flex items-center gap-1.5 px-4 py-3"
         style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
@@ -182,23 +182,23 @@ function StickyTimeline() {
           style={{ paddingTop: "72px", paddingBottom: "28px" }}>
 
           {/* Header row */}
-          <div className="flex items-center justify-between mb-8 md:mb-10 flex-shrink-0">
-            <div>
-              <span className="text-[11px] font-bold uppercase tracking-[0.28em]" style={{ color: "#f97316" }}>
+          <div className="flex items-start justify-between mb-6 md:mb-10 flex-shrink-0 gap-4">
+            <div className="min-w-0">
+              <span className="text-[11px] font-bold uppercase tracking-[0.22em] md:tracking-[0.28em]" style={{ color: "#f97316" }}>
                 Violation → Alert
               </span>
-              <p className="text-sm mt-1.5" style={{ color: "rgba(255,255,255,0.45)" }}>
-                No human intervention. Under 200 milliseconds.
+              <p className="text-xs md:text-sm mt-1.5" style={{ color: "rgba(255,255,255,0.45)" }}>
+                No human intervention. Under 200ms.
               </p>
             </div>
             {/* Step counter */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 flex-shrink-0 pt-0.5">
               {timelineSteps.map((_, i) => (
                 <div
                   key={i}
                   className="rounded-full transition-all duration-500"
                   style={{
-                    width: i === activeStep ? 32 : 8,
+                    width: i === activeStep ? 28 : 8,
                     height: 8,
                     background: i === activeStep ? "#f97316" : "rgba(255,255,255,0.2)",
                   }}
@@ -220,14 +220,14 @@ function StickyTimeline() {
               >
                 {/* Left: text */}
                 <div>
-                  {/* Big step number — flashes orange on enter */}
+                  {/* Big step number , flashes orange on enter */}
                   <motion.div
                     initial={{ color: "#f97316", opacity: 0.9 }}
                     animate={{ color: "rgba(249,115,22,0.18)", opacity: 1 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     className="font-black heading-tight mb-3 select-none"
                     style={{
-                      fontSize: "clamp(4.5rem, 11vw, 8rem)",
+                      fontSize: "clamp(3rem, 11vw, 8rem)",
                       lineHeight: 1,
                       letterSpacing: "-0.04em",
                     }}

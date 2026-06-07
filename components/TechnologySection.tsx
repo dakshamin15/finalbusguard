@@ -8,7 +8,7 @@ const features = [
     title: "Computer Vision Core",
     subtitle: "Custom-trained detection model",
     description:
-      "Our proprietary computer vision model is trained specifically for stop-arm violation scenarios — accounting for bus geometry, arm extension angles, and vehicle trajectories. Achieves 95.3% true positive rate under real-world field conditions.",
+      "Our proprietary computer vision model is trained specifically for stop-arm violation scenarios , accounting for bus geometry, arm extension angles, and vehicle trajectories. Achieves 95.3% true positive rate under real-world field conditions.",
     tags: ["95.3% accuracy", "Custom dataset", "Day & night", "Multi-angle"],
     mockLabel: "Live Detection Feed",
     mockLines: [
@@ -22,7 +22,7 @@ const features = [
     title: "Hardened Hardware",
     subtitle: "Built for bus environments",
     description:
-      "The BusGuard unit is housed in a weatherproof enclosure rated for school bus mounting conditions — temperature extremes, vibration, and moisture. Designed to keep running through every route, every season.",
+      "The BusGuard unit is housed in a weatherproof enclosure rated for school bus mounting conditions , temperature extremes, vibration, and moisture. Designed to keep running through every route, every season.",
     tags: ["IP67 weatherproof", "Vibration-resistant", "-20°C to 60°C", "Tamper-resistant"],
     mockLabel: "Hardware Status",
     mockLines: [
@@ -36,7 +36,7 @@ const features = [
     title: "Incident Logging",
     subtitle: "Every violation on record",
     description:
-      "BusGuard timestamps and stores every detected incident with full metadata — GPS location, image capture, vehicle speed estimate, and route ID — creating an audit trail for district reporting and legal compliance.",
+      "BusGuard timestamps and stores every detected incident with full metadata , GPS location, image capture, vehicle speed estimate, and route ID , creating an audit trail for district reporting and legal compliance.",
     tags: ["GPS timestamps", "Image capture", "Fleet dashboard", "Export-ready"],
     mockLabel: "Incident Log",
     mockLines: [
@@ -97,10 +97,11 @@ export default function TechnologySection() {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="grid grid-cols-1 gap-10 items-start"
-              style={{ gridTemplateColumns: i % 2 === 0 ? "65fr 35fr" : "35fr 65fr" }}
+              className={i % 2 === 0
+                ? "grid grid-cols-1 md:grid-cols-[65fr_35fr] gap-10 items-start"
+                : "grid grid-cols-1 md:grid-cols-[35fr_65fr] gap-10 items-start"}
             >
-              <div style={{ order: i % 2 === 0 ? 0 : 1 }}>
+              <div className={i % 2 !== 0 ? "md:order-last" : ""}>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] mb-3" style={{ color: "#999999" }}>
                   {feature.subtitle}
                 </p>
@@ -119,7 +120,7 @@ export default function TechnologySection() {
                   ))}
                 </div>
               </div>
-              <div style={{ order: i % 2 === 0 ? 1 : 0 }}>
+              <div className={i % 2 !== 0 ? "md:order-first" : ""}>
                 <MockUI label={feature.mockLabel} lines={feature.mockLines} />
               </div>
             </motion.div>

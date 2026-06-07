@@ -24,7 +24,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm leading-relaxed" style={{ color: "#aaaaaa" }}>
-              Real-time stop-arm violation detection — in active discussions with Virginia school districts.
+              Real-time stop-arm violation detection , in active discussions with Virginia school districts.
             </p>
           </div>
 

@@ -4,9 +4,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "BusGuard — Real-Time Stop-Arm Violation Detection",
+  title: "BusGuard , Real-Time Stop-Arm Violation Detection",
   description:
-    "BusGuard detects illegal stop-arm violations in real time and triggers instant audio warnings — keeping students safe before harm occurs.",
+    "BusGuard detects illegal stop-arm violations in real time and triggers instant audio warnings , keeping students safe before harm occurs.",
 };
 
 export default function RootLayout({

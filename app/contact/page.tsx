@@ -18,7 +18,7 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`BusGuard Inquiry — ${form.type} — ${form.organization || form.name}`);
+    const subject = encodeURIComponent(`BusGuard Inquiry , ${form.type} , ${form.organization || form.name}`);
     const body    = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nOrganization: ${form.organization}\nRole: ${form.role}\nType: ${form.type}\n\n${form.message}`
     );
@@ -78,7 +78,7 @@ export default function ContactPage() {
       >
         <div className="max-w-[1000px] mx-auto grid grid-cols-1 md:grid-cols-5 gap-12">
 
-          {/* Left — contact info */}
+          {/* Left , contact info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={formIn ? { opacity: 1, x: 0 } : {}}
@@ -108,7 +108,7 @@ export default function ContactPage() {
 
           </motion.div>
 
-          {/* Right — form */}
+          {/* Right , form */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={formIn ? { opacity: 1, x: 0 } : {}}

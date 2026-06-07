@@ -14,7 +14,7 @@ const features = [
     label: "Real-Time Detection",
     stat: "95.3%",
     statLabel: "true positive rate",
-    body: "A custom-trained computer vision model watches the stop arm and surrounding traffic on every trip — day, night, rain, or shine.",
+    body: "A custom-trained computer vision model watches the stop arm and surrounding traffic on every trip , day, night, rain, or shine.",
   },
   {
     icon: (
@@ -41,7 +41,7 @@ const features = [
     label: "Automatic Logging",
     stat: "256 GB",
     statLabel: "onboard storage",
-    body: "Every incident is automatically timestamped with GPS coordinates, image capture, and route ID — creating a legally defensible audit trail.",
+    body: "Every incident is automatically timestamped with GPS coordinates, image capture, and route ID , creating a legally defensible audit trail.",
   },
 ];
 
@@ -95,7 +95,7 @@ export default function BusGuardExplainer() {
             style={{ color: "#555555", maxWidth: "56ch" }}
           >
             BusGuard is a compact, weatherproof AI device that mounts inside any school bus
-            and autonomously monitors for stop-arm violations — detecting, alerting, and
+            and autonomously monitors for stop-arm violations , detecting, alerting, and
             logging every incident with no human intervention required.
           </p>
         </motion.div>
