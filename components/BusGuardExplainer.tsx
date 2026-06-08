@@ -94,7 +94,7 @@ export default function BusGuardExplainer() {
             className="text-[17px] leading-relaxed"
             style={{ color: "#555555", maxWidth: "56ch" }}
           >
-            BusGuard is a compact, weatherproof AI device that mounts inside any school bus
+            BusGuard is a compact, weatherproof device that mounts inside any school bus
             and autonomously monitors for stop-arm violations , detecting, alerting, and
             logging every incident with no human intervention required.
           </p>
