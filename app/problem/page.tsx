@@ -103,7 +103,7 @@ export default function ProblemPage() {
               </p>
               <div className="p-6 border-l-4 border-[#f97316] bg-[#f2f2ef] italic text-sm">
                 By the time a violation is recorded, the child has already been exposed to the threat.
-                —
+                
               </div>
             </div>
             
