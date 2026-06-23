@@ -8,7 +8,6 @@ export default function BusGuardHero() {
   const brandWordRef = useRef(null);
   const brandSubRef = useRef(null);
   const dotsRef = useRef(null);
-  const doneRef = useRef(null);
   const revealWrapRef = useRef(null);
   const revealWordRef = useRef(null);
   const revealSubRef = useRef(null);
@@ -21,7 +20,6 @@ export default function BusGuardHero() {
     const brandWord = brandWordRef.current;
     const brandSub  = brandSubRef.current;
     const dotsEl    = dotsRef.current;
-    const doneEl    = doneRef.current;
     const revealWrap = revealWrapRef.current;
     const revealWord = revealWordRef.current;
     const revealSub  = revealSubRef.current;
@@ -431,7 +429,6 @@ export default function BusGuardHero() {
     function resetCycle() {
       et = 0; phaseT = 0; phase = "assembling";
       sceneRotY = 0; idleT = 0;
-      doneEl.style.opacity = "0";
       hideReveal();
       resetTitleBar();
       PIECES.forEach(({ obj, start }) => { obj.position.set(...start.p); obj.rotation.set(...start.r); });
@@ -454,7 +451,6 @@ export default function BusGuardHero() {
         if (c.isMesh && c.material) { c.material.transparent = true; c.material.opacity = 0; }
       }));
       hideTitleBar();
-      doneEl.style.opacity = "0";
       revealWrap.style.opacity = "1";
       revealWrap.classList.add("bgh-reveal-show");
       revealWord.style.transform = "translateY(0)";
@@ -482,11 +478,11 @@ export default function BusGuardHero() {
 
       if (phase === "assembling" && phaseT >= TOTAL_ANIM) {
         phase = "holding"; phaseT = 0;
-        doneEl.style.opacity = "1"; idleT = 0;
+        
       }
       if (phase === "holding" && phaseT >= HOLD) {
         phase = "exploding"; phaseT = 0;
-        doneEl.style.opacity = "0"; hideTitleBar();
+        hideTitleBar();
       }
       if (phase === "exploding" && phaseT >= EXPLODE_DUR + PAUSE_BEFORE_REVEAL) {
         phase = "revealing"; phaseT = 0; triggerReveal();
@@ -588,15 +584,6 @@ export default function BusGuardHero() {
           display: "flex", gap: 7, alignItems: "center"
         }} />
 
-        {/* Assembled pill */}
-        <div ref={doneRef} style={{
-          position: "absolute", bottom: 50, left: "50%", transform: "translateX(-50%)",
-          fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-          background: "#111", color: "#fff",
-          padding: "10px 30px", borderRadius: 100,
-          fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700,
-          opacity: 0, transition: "opacity 1.1s", whiteSpace: "nowrap"
-        }}>System Assembled ✓</div>
 
         {/* Final orange BUSGUARD reveal */}
         <div ref={revealWrapRef} className="bgh-reveal-wrap">
