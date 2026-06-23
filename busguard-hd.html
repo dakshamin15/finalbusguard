@@ -846,11 +846,10 @@ PIECES.forEach((p,i)=>{
 
 const TOTAL_ANIM = PAIRS.length * PAIR_GAP + PIECE_DURATION;
 const HOLD       = 1.6;   // show assembled briefly
-const LOWER_DUR  = 0.55;  // chassis drops before pieces scatter
 const EXPLODE_DUR= 0.9;   // pieces fly out
 const PAUSE_BEFORE_REVEAL = 0.25;
 const REVEAL_DUR = 2.2;   // hold reveal screen
-const CYCLE      = TOTAL_ANIM + HOLD + LOWER_DUR + EXPLODE_DUR + PAUSE_BEFORE_REVEAL + REVEAL_DUR;
+const CYCLE      = TOTAL_ANIM + HOLD + EXPLODE_DUR + PAUSE_BEFORE_REVEAL + REVEAL_DUR;
 
 // Explode-out positions — pieces scatter away from housing
 const EXPLODE = [
@@ -940,7 +939,6 @@ function resetCycle(){
   doneEl.style.opacity='0';
   hideReveal();
   resetTitleBar();
-  housing.position.set(0,0,0);
   PIECES.forEach(({obj,start})=>{
     obj.position.set(...start.p);
     obj.rotation.set(...start.r);
@@ -1008,12 +1006,9 @@ function tick(){
     idleT=0;
   }
   if(phase==='holding' && phaseT>=HOLD){
-    phase='lowering'; phaseT=0;
+    phase='exploding'; phaseT=0;
     doneEl.style.opacity='0';
     hideTitleBar();
-  }
-  if(phase==='lowering' && phaseT>=LOWER_DUR){
-    phase='exploding'; phaseT=0;
   }
   if(phase==='exploding' && phaseT>=EXPLODE_DUR+PAUSE_BEFORE_REVEAL){
     phase='revealing'; phaseT=0;
@@ -1052,16 +1047,6 @@ function tick(){
     }
   });
 
-  // ── Housing drops during lowering phase
-  if(phase==='assembling'||phase==='holding'){
-    housing.position.y=0;
-  } else if(phase==='lowering'){
-    const t01=Math.max(0,Math.min(1,phaseT/LOWER_DUR));
-    housing.position.y=lerp(0,-5,easeInQuint(t01));
-  } else if(phase==='exploding'||phase==='revealing'){
-    housing.position.y=-5;
-  }
-
   // All 3D objects: fade out together during explode so screen is totally clear for reveal
   const allObjs=[housing,...PIECES.map(p=>p.obj)];
   if(phase==='exploding'){
@@ -1085,8 +1070,6 @@ function tick(){
   if(phase==='holding'){
     idleT+=dt;
     sceneRotY=lerp(sceneRotY, Math.sin(idleT*0.22)*0.28, 0.014);
-  } else if(phase==='lowering'){
-    sceneRotY=lerp(sceneRotY,0,0.06);
   } else if(phase==='exploding'){
     // Spin slightly as things scatter
     sceneRotY=lerp(sceneRotY, sceneRotY+0.008, 0.1);
