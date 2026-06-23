@@ -7,19 +7,19 @@ import Image from "next/image";
 const founders = [
   {
     name: "Avyay Bharadwaj",
-    role: "Co-Founder - Operations",
+    role: "Co-Founder",
     photo: "/avyay.png",
-    bio: "Leads day-to-day operations, partnerships, and go-to-market strategy. Keeps the team moving and connected with district stakeholders.",
+    bio: "Leads day-to-day operations, pitches, and go-to-market strategy. Responsible for pitch strategy and external communications.",
   },
   {
     name: "Daksh Amin",
-    role: "Co-Founder - Marketing",
+    role: "Co-Founder",
     photo: "/daksh.png",
-    bio: "Drives BusGuard's brand, outreach, and competitive positioning. Responsible for pitch strategy and external communications.",
+    bio: "Drives BusGuard's brand, outreach, and partnerships. Keeps the team moving and connected with connections and supporting businesses.",
   },
   {
     name: "Kshiteej Herode",
-    role: "Co-Founder - Technology",
+    role: "Co-Founder",
     photo: "/kshiteej.png",
     bio: "Leads the computer vision model, hardware integration, and software architecture. The technical backbone of the BusGuard system.",
   },
