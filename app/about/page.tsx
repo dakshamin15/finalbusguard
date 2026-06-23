@@ -9,13 +9,13 @@ const founders = [
     name: "Avyay Bharadwaj",
     role: "Co-Founder",
     photo: "/avyay.png",
-    bio: "Leads day-to-day operations, pitches, and go-to-market strategy. Responsible for pitch strategy and external communications.",
+    bio: "Leads day-to-day operations, pitches, and go-to-market brand. Responsible for pitch strategy and external communications.",
   },
   {
     name: "Daksh Amin",
     role: "Co-Founder",
     photo: "/daksh.png",
-    bio: "Drives BusGuard's brand, outreach, and partnerships. Keeps the team moving and connected with connections and supporting businesses.",
+    bio: "Drives BusGuard's strategy, outreach, and partnerships. Keeps the team moving and connected with organizations and supporting businesses.",
   },
   {
     name: "Kshiteej Herode",
@@ -146,7 +146,7 @@ export default function AboutPage() {
               className="font-black heading-tight"
               style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#111111" }}
             >
-              The co-founders.
+              The Founders.
             </h2>
           </motion.div>
 
