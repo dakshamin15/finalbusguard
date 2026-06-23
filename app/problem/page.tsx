@@ -1,0 +1,144 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+const statistics = [
+  {
+    number: "43.5M",
+    label: "Annual Violations",
+    detail: "Estimated illegal school bus passings in the 2022-2023 school year.",
+  },
+  {
+    number: "17M",
+    label: "In the Danger Zone",
+    detail: "Occurrences where children were directly in the crossing zone during a violation.",
+  },
+  {
+    number: "95,000",
+    label: "Daily Incidents",
+    detail: "Vehicles illegally passing stopped buses every single school day.",
+  },
+];
+
+const limitations = [
+  {
+    title: "Reactive, Not Proactive",
+    description: "Current market leaders focus on post-hoc documentation—mailing a ticket weeks after the child was already in danger.",
+  },
+  {
+    title: "The 4-Second Gap",
+    description: "There is a critical 2-4 second window where a child decides to cross. Current systems offer zero intervention during this moment.",
+  },
+  {
+    title: "Developmental Vulnerability",
+    description: "Children aged 5-8 have the least capacity to judge vehicle speed, making real-time alerts a necessity, not a luxury.",
+  },
+];
+
+export default function ProblemPage() {
+  return (
+    <main className="min-h-screen bg-[#ffffff]">
+      {/* Hero Section */}
+      <section className="relative pt-44 pb-20 px-6 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: "radial-gradient(ellipse 50% 50% at 50% -10%, rgba(249,115,22,0.1) 0%, transparent 80%)",
+        }} />
+        
+        <div className="max-w-[1000px] mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em]" style={{ color: "#f97316" }}>The Crisis</span>
+              <div className="flex-1 h-px" style={{ background: "rgba(249,115,22,0.2)" }} />
+            </div>
+            <h1 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9]" style={{ color: "#111111" }}>
+              A Safety System <br />
+              <span style={{ color: "#f97316" }}>That Only Watches.</span>
+            </h1>
+            <p className="text-xl max-w-2xl leading-relaxed" style={{ color: "#555555" }}>
+              According to the NASDPTS, millions of children are placed in the "Danger Zone" every year. 
+              While cameras record license plates for citations, no system currently intervenes 
+              to stop a tragedy before it happens.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Statistics Grid */}
+      <section className="py-20 px-6" style={{ background: "#f2f2ef" }}>
+        <div className="max-w-[1200px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {statistics.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-10 rounded-[6px] bg-white border border-black/5"
+              >
+                <h2 className="text-5xl font-black mb-2" style={{ color: "#f97316" }}>{stat.number}</h2>
+                <p className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#111111" }}>{stat.label}</p>
+                <p className="text-sm leading-relaxed" style={{ color: "#666666" }}>{stat.detail}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* The Core Problem / Analysis */}
+      <section className="py-24 px-6">
+        <div className="max-w-[1000px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+            <div>
+              <h3 className="text-3xl font-black mb-6" style={{ color: "#111111" }}>
+                The "Documentation-Only" <br />Failure
+              </h3>
+              <p className="text-lg leading-relaxed mb-6" style={{ color: "#555555" }}>
+                Existing commercial systems are designed for 
+                <strong> post-hoc documentation</strong>. They capture license plates to process fines.
+              </p>
+              <div className="p-6 border-l-4 border-[#f97316] bg-[#f2f2ef] italic text-sm">
+                By the time a violation is recorded, the child has already been exposed to the threat.
+                —
+              </div>
+            </div>
+            
+            <div className="space-y-8">
+              {limitations.map((item) => (
+                <div key={item.title}>
+                  <h4 className="font-bold text-sm uppercase tracking-wider mb-2" style={{ color: "#f97316" }}>
+                    {item.title}
+                  </h4>
+                  <p className="text-sm leading-relaxed" style={{ color: "#666666" }}>
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action for Tech */}
+      <section className="py-20 px-6 bg-white border-t border-black/5">
+        <div className="max-w-[800px] mx-auto text-center">
+          <h2 className="text-3xl font-black mb-6">The status quo waits for the violation.</h2>
+          <p className="text-lg mb-10" style={{ color: "#666666" }}>
+            We believe the most valuable moment for intervention is during the violation event itself. 
+            That is why we built a prevention-first architecture.
+          </p>
+          <a 
+            href="/technology" 
+            className="inline-block px-8 py-4 bg-[#f97316] text-white font-bold rounded-[4px] hover:opacity-90 transition-opacity"
+          >
+            See Our Proactive Solution →
+          </a>
+        </div>
+      </section>
+    </main>
+  );
+}
