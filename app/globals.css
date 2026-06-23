@@ -64,21 +64,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .bgh-brand-word {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: clamp(26px, 8.5vw, 40px);
+  font-size: 40px;
   font-weight: 900;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.38em;
   color: #111;
   text-transform: uppercase;
   display: block;
   transform: translateY(56px);
   opacity: 0;
-}
-
-@media (min-width: 480px) {
-  .bgh-brand-word {
-    font-size: 40px;
-    letter-spacing: 0.38em;
-  }
 }
 
 .bgh-brand-word.bgh-pop {
