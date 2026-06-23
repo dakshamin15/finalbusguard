@@ -8,6 +8,7 @@ export default function ContactPage() {
   const formIn  = useInView(formRef, { once: true, margin: "-80px" });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
     name: "", email: "", organization: "", role: "", message: "", type: "sales",
   });
@@ -16,14 +17,40 @@ export default function ContactPage() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`BusGuard Inquiry , ${form.type} , ${form.organization || form.name}`);
-    const body    = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nOrganization: ${form.organization}\nRole: ${form.role}\nType: ${form.type}\n\n${form.message}`
-    );
-    window.location.href = `mailto:info@busguard.net?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    const formData = {
+      access_key: "645f2ac3-b12d-41bc-b131-b89abec10c4e",
+      subject: `BusGuard Inquiry , ${form.type} , ${form.organization || form.name}`,
+      from_name: form.name,
+      ...form
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        console.error("Submission failed:", result.message);
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputStyle = {
@@ -203,9 +230,10 @@ export default function ContactPage() {
                 </div>
 
                 <button type="submit"
-                  className="w-full py-3 rounded-lg font-bold text-white text-sm transition-all duration-200 hover:opacity-90"
+                  disabled={isSubmitting}
+                  className="w-full py-3 rounded-lg font-bold text-white text-sm transition-all duration-200 hover:opacity-90 disabled:opacity-50"
                   style={{ background: "#f97316" }}>
-                  Send Message →
+                  {isSubmitting ? "Sending..." : "Send Message →"}
                 </button>
               </form>
             )}
