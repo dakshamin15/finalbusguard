@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "BusGuard , Real-Time Stop-Arm Violation Detection",
   description:
     "BusGuard detects illegal stop-arm violations in real time and triggers instant audio warnings , keeping students safe before harm occurs.",
+  icons: {
+    icon: "/busguard-icon.png",
+  },
 };
 
 export default function RootLayout({
