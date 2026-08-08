@@ -87,10 +87,8 @@ const events = [
       "Featured on WRIC ABC 8News highlighting how BusGuard's innovative stop-arm detection technology is taking active steps to make school buses safer in Henrico County.",
     logo: "",
     logoHeight: 0,
-    photos: [
-      "/newspic1.png",
-      "/newspic2.png",
-    ],
+    photos: ["/newspic2.png"],
+    youtubeUrl: "https://www.youtube.com/embed/hAD6l9vFUIk",
     link: "https://www.wric.com/news/local-news/henrico-county/young-entrepreneurs-make-school-buses-safer-new-technology/",
   },
 ];
@@ -283,6 +281,19 @@ function MilestoneCard({
         overflow: "hidden",
       }}
     >
+      {/* Embedded Video */}
+      {"youtubeUrl" in event && event.youtubeUrl && (
+        <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, borderRadius: 10, overflow: "hidden", marginBottom: 20 }}>
+          <iframe
+            src={event.youtubeUrl}
+            title={event.name}
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      )}
+
       {/* Images */}
       {hasPhotos && (event.id === "diamond" || event.id === "innospark" || event.id === "blueocean") && (
         <CertStack photos={event.photos} onPhotoClick={onPhotoClick} />
@@ -466,8 +477,8 @@ export default function ImpactPage() {
             <span style={{ color: ORANGE }}>Every Stage.</span>
           </h1>
           <p className="text-lg leading-relaxed max-w-xl" style={{ color: "#555555" }}>
-            Five competitions. Multiple finalist placements. A team building
-            something that matters , and proving it on every stage we step onto.
+            Five competitions. Major news coverage. A team building
+            something that matters, and proving it everywhere we go.
           </p>
         </motion.div>
       </section>
@@ -492,7 +503,7 @@ export default function ImpactPage() {
                 className="font-black heading-tight"
                 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#111111" }}
               >
-                From classroom to competition stage.
+                From local vision to national recognition &amp; news.
               </h2>
             </motion.div>
           </div>
