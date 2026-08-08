@@ -81,24 +81,44 @@ export default function SocialProof() {
               </div>
 
               <h3 className="text-xl md:text-2xl font-black mb-4" style={{ color: "#ffffff" }}>
-                WRIC ABC 8News Feature
+                Young Entrepreneurs Making School Buses Safer
               </h3>
 
               <p className="text-sm md:text-base leading-relaxed mb-6" style={{ color: "#aaaaaa" }}>
-                Highlighting how BusGuard’s innovative stop-arm detection technology is taking active steps to keep students safe across local school districts.
+                WRIC 8News spotlighted the BusGuard team and our mission to eliminate stop-arm violations using real-time detection and early-warning alerts for student safety.
               </p>
             </div>
 
-            <div className="pt-6 border-t border-white/5">
+            <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row gap-4 sm:items-center">
+              {/* Watch Video Link */}
               <a
-                href="/impact"
-                className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider transition-transform hover:translate-x-1"
+                href="https://youtu.be/hAD6l9vFUIk?si=kjY-8yUUHX1UnVFY"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider transition-colors hover:opacity-80"
                 style={{ color: "#f97316" }}
               >
-                Check out the news segment
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
+                Watch News Broadcast
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </a>
+
+              <span className="hidden sm:inline text-white/20">•</span>
+
+              {/* Read Article Link */}
+              <a
+                href="https://www.wric.com/news/local-news/henrico-county/young-entrepreneurs-make-school-buses-safer-new-technology/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider transition-colors hover:opacity-80"
+                style={{ color: "#aaaaaa" }}
+              >
+                Read Article
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
                 </svg>
               </a>
             </div>
