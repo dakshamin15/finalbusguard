@@ -7,49 +7,29 @@ import Image from "next/image";
 const founders = [
   {
     name: "Avyay Bharadwaj",
-    role: "Co-Founder",
+    role: "Chief Operating Officer",
     photo: "/avyay.png",
     bio: "Leads day-to-day operations, pitches, and go-to-market brand. Responsible for pitch strategy and external communications.",
   },
   {
     name: "Daksh Amin",
-    role: "Co-Founder",
+    role: "Chief Executive Officer",
     photo: "/daksh.png",
     bio: "Drives BusGuard's strategy, outreach, and partnerships. Keeps the team moving and connected with organizations and supporting businesses.",
   },
   {
     name: "Kshiteej Herode",
-    role: "Co-Founder",
+    role: "Chief Technical Officer",
     photo: "/kshiteej.png",
     bio: "Leads the computer vision model, hardware integration, and software architecture. The technical backbone of the BusGuard system.",
-  },
-];
-
-const values = [
-  {
-    title: "Safety First",
-    description:
-      "Every engineering decision is made with one question: does this make students safer? We never trade safety for cost.",
-  },
-  {
-    title: "Evidence-Based",
-    description:
-      "We don't ship claims we can't back up. Our 95.3% accuracy figure comes from 211 real-world trials, not lab conditions.",
-  },
-  {
-    title: "Partner-Driven",
-    description:
-      "We build alongside districts, drivers, and transportation directors , not in isolation. Their feedback shapes every version.",
   },
 ];
 
 export default function AboutPage() {
   const missionRef  = useRef(null);
   const foundersRef = useRef(null);
-  const valuesRef   = useRef(null);
   const missionIn   = useInView(missionRef,  { once: true, margin: "-80px" });
   const foundersIn  = useInView(foundersRef, { once: true, margin: "-80px" });
-  const valuesIn    = useInView(valuesRef,   { once: true, margin: "-80px" });
 
   return (
     <>
@@ -184,54 +164,6 @@ export default function AboutPage() {
                   <h3 className="text-xl font-black heading-tight mb-3" style={{ color: "#111111" }}>{f.name}</h3>
                   <p className="text-sm leading-relaxed" style={{ color: "#666666" }}>{f.bio}</p>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── VALUES ────────────────────────────────────────────────── */}
-      <section
-        ref={valuesRef}
-        className="relative py-28 px-6 overflow-hidden"
-        style={{
-          background: "#f2f2ef",
-          backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.10) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
-        }}
-      >
-        <div className="max-w-[1100px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={valuesIn ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55 }}
-            className="mb-14"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-[10px] font-bold uppercase tracking-[0.28em]" style={{ color: "#f97316" }}>Our Values</span>
-              <div className="flex-1 h-px" style={{ background: "rgba(249,115,22,0.25)" }} />
-            </div>
-            <h2
-              className="font-black heading-tight"
-              style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#111111" }}
-            >
-              What drives us.
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {values.map((v, i) => (
-              <motion.div
-                key={v.title}
-                initial={{ opacity: 0, y: 28 }}
-                animate={valuesIn ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="rounded-[10px] p-8"
-                style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.08)" }}
-              >
-                <div className="w-8 h-1 rounded-full mb-6" style={{ background: "#f97316" }} />
-                <h3 className="text-lg font-black heading-tight mb-3" style={{ color: "#111111" }}>{v.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#666666" }}>{v.description}</p>
               </motion.div>
             ))}
           </div>
