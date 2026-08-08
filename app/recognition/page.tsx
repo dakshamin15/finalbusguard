@@ -8,18 +8,6 @@ const ORANGE = "#E87722";
 
 const events = [
   {
-    id: "wric-news",
-    date: "August 2026",
-    name: "WRIC ABC 8News Feature",
-    badge: "Featured on News",
-    description:
-      "Featured on WRIC ABC 8News highlighting how BusGuard's innovative stop-arm detection technology is taking active steps to make school buses safer in Henrico County.",
-    logo: "",
-    logoHeight: 0,
-    photos: [],
-    link: "https://www.wric.com/news/local-news/henrico-county/young-entrepreneurs-make-school-buses-safer-new-technology/",
-  },
-  {
     id: "henrico",
     date: "December 2025",
     name: "Henrico Innovation Challenge",
@@ -89,6 +77,21 @@ const events = [
     logo: "/VCEE%20Logo.png",
     logoHeight: 90,
     photos: [],
+  },
+  {
+    id: "wric-news",
+    date: "August 2026",
+    name: "WRIC ABC 8News Feature",
+    badge: "Featured on News",
+    description:
+      "Featured on WRIC ABC 8News highlighting how BusGuard's innovative stop-arm detection technology is taking active steps to make school buses safer in Henrico County.",
+    logo: "",
+    logoHeight: 0,
+    photos: [
+      "/newspic1.png",
+      "/newspic2.png",
+    ],
+    link: "https://www.wric.com/news/local-news/henrico-county/young-entrepreneurs-make-school-buses-safer-new-technology/",
   },
 ];
 
@@ -334,7 +337,7 @@ function MilestoneCard({
             {event.description}
           </p>
 
-          {event.link && (
+          {"link" in event && event.link && (
             <div style={{ marginTop: 16 }}>
               <a
                 href={event.link}
@@ -463,8 +466,8 @@ export default function ImpactPage() {
             <span style={{ color: ORANGE }}>Every Stage.</span>
           </h1>
           <p className="text-lg leading-relaxed max-w-xl" style={{ color: "#555555" }}>
-            From national pitch competitions to local news features. A team building
-            something that matters, and proving it on every stage we step onto.
+            Five competitions. Multiple finalist placements. A team building
+            something that matters , and proving it on every stage we step onto.
           </p>
         </motion.div>
       </section>
@@ -592,7 +595,7 @@ export default function ImpactPage() {
         </div>
       </section>
 
-    <AnimatePresence>
+      <AnimatePresence>
         {lightboxSrc && <Lightbox src={lightboxSrc} onClose={closePhoto} />}
       </AnimatePresence>
 
