@@ -1,3 +1,6 @@
+Here is your updated page code. A new milestone entry has been added to the top of the timeline array (dated **August 2026**) with a featured badge, description, and an external button link directly to the **WRIC ABC 8News** article.
+
+```tsx
 "use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
@@ -7,6 +10,18 @@ import SocialProof from "@/components/SocialProof";
 const ORANGE = "#E87722";
 
 const events = [
+  {
+    id: "wric-news",
+    date: "August 2026",
+    name: "WRIC ABC 8News Feature",
+    badge: "Featured on News",
+    description:
+      "Featured on WRIC ABC 8News highlighting how BusGuard's innovative stop-arm detection technology is taking active steps to make school buses safer in Henrico County.",
+    logo: "",
+    logoHeight: 0,
+    photos: [],
+    link: "https://www.wric.com/news/local-news/henrico-county/young-entrepreneurs-make-school-buses-safer-new-technology/",
+  },
   {
     id: "henrico",
     date: "December 2025",
@@ -277,8 +292,7 @@ function MilestoneCard({
       )}
 
       {event.name ? (
-        /* ── Named cards (Henrico, InnoSpark, VCEE):
-              logo + name on left · badge below on mobile, right on sm+ ── */
+        /* ── Named cards ── */
         <>
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start" style={{ gap: 12, marginBottom: 14 }}>
             <div style={{ minWidth: 0 }}>
@@ -322,10 +336,35 @@ function MilestoneCard({
           <p style={{ fontSize: 13.5, color: "#6B7280", lineHeight: 1.68, margin: 0 }}>
             {event.description}
           </p>
+
+          {event.link && (
+            <div style={{ marginTop: 16 }}>
+              <a
+                href={event.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  fontSize: 13,
+                  fontWeight: 700,
+                  color: ORANGE,
+                  textDecoration: "none",
+                }}
+              >
+                Read full article on WRIC 8News
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+              </a>
+            </div>
+          )}
         </>
       ) : (
-        /* ── Unnamed cards (Diamond, Blue Ocean):
-              logo left · badge below on mobile, right on sm+ ── */
+        /* ── Unnamed cards ── */
         <>
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start" style={{ gap: 12, marginBottom: 14 }}>
             {event.logo && (
@@ -427,8 +466,8 @@ export default function ImpactPage() {
             <span style={{ color: ORANGE }}>Every Stage.</span>
           </h1>
           <p className="text-lg leading-relaxed max-w-xl" style={{ color: "#555555" }}>
-            Five competitions. Multiple finalist placements. A team building
-            something that matters , and proving it on every stage we step onto.
+            From national pitch competitions to local news features. A team building
+            something that matters, and proving it on every stage we step onto.
           </p>
         </motion.div>
       </section>
@@ -460,7 +499,7 @@ export default function ImpactPage() {
 
           {/* ── Desktop ── */}
           <div className="hidden lg:block relative">
-            {/* Spine , 3px, animated grow */}
+            {/* Spine */}
             <motion.div
               initial={{ scaleY: 0 }}
               animate={headerIn ? { scaleY: 1 } : {}}
@@ -545,7 +584,6 @@ export default function ImpactPage() {
                   />
                 </div>
                 <div className="flex-1 min-w-0" style={{ maxWidth: 600 }}>
-                  {/* Date pill above card */}
                   <div style={{ marginBottom: 10 }}>
                     <DatePill date={event.date} />
                   </div>
@@ -565,3 +603,5 @@ export default function ImpactPage() {
     </>
   );
 }
+
+```
