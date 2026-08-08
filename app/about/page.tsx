@@ -7,19 +7,19 @@ import Image from "next/image";
 const founders = [
   {
     name: "Avyay Bharadwaj",
-    role: "Chief Operating Officer",
+    role: "Chief Operating Officer (COO)",
     photo: "/avyay.png",
     bio: "Leads day-to-day operations, pitches, and go-to-market brand. Responsible for pitch strategy and external communications.",
   },
   {
     name: "Daksh Amin",
-    role: "Chief Executive Officer",
+    role: "Chief Executive Officer (CEO)",
     photo: "/daksh.png",
     bio: "Drives BusGuard's strategy, outreach, and partnerships. Keeps the team moving and connected with organizations and supporting businesses.",
   },
   {
     name: "Kshiteej Herode",
-    role: "Chief Technical Officer",
+    role: "Chief Technical Officer (CTO)",
     photo: "/kshiteej.png",
     bio: "Leads the computer vision model, hardware integration, and software architecture. The technical backbone of the BusGuard system.",
   },
