@@ -592,7 +592,7 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      <AnimatePresence>
+    <AnimatePresence>
         {lightboxSrc && <Lightbox src={lightboxSrc} onClose={closePhoto} />}
       </AnimatePresence>
 
@@ -600,5 +600,3 @@ export default function ImpactPage() {
     </>
   );
 }
-
-```
