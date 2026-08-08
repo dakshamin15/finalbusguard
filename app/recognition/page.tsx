@@ -1,6 +1,3 @@
-Here is your updated page code. A new milestone entry has been added to the top of the timeline array (dated **August 2026**) with a featured badge, description, and an external button link directly to the **WRIC ABC 8News** article.
-
-```tsx
 "use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
