@@ -6,9 +6,15 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "BusGuard",
   description:
-    "BusGuard detects illegal stop-arm violations in real time and triggers instant audio warnings , keeping students safe before harm occurs.",
+    "BusGuard detects illegal stop-arm violations in real time and triggers instant audio warnings, keeping students safe before harm occurs.",
   icons: {
-    icon: "/bus.guard.png",
+    icon: [
+      {
+        url: "/bus.guard.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+    ],
   },
 };
 
