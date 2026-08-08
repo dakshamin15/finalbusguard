@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/bus.guard.png",
+        url: "/busguard.png",
         sizes: "32x32",
         type: "image/png",
       },
