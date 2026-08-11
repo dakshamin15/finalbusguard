@@ -9,7 +9,7 @@ const founders = [
     name: "Avyay Bharadwaj",
     role: "Chief Operating Officer (COO)",
     photo: "/avyay.png",
-    bio: "Leads day-to-day operations, pitches, and go-to-market brand. Responsible for pitch strategy and external communications.",
+    bio: "Leads hardware testing and design, day-to-day operations, and pitches. Also directs external communication.",
   },
   {
     name: "Daksh Amin",
