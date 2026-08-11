@@ -15,7 +15,7 @@ const founders = [
     name: "Daksh Amin",
     role: "Chief Executive Officer (CEO)",
     photo: "/daksh.png",
-    bio: "Drives BusGuard's strategy, outreach, and partnerships. Keeps the team moving and connected with organizations and supporting businesses.",
+    bio: "Leads BusGuard’s overall strategy, partnerships, and growth. Directs the organization’s vision and long-term development.",
   },
   {
     name: "Kshiteej Herode",
