@@ -126,27 +126,6 @@ export const problem = {
 
 export type SceneStep = { tag: string; ms: string; title: string; body: string };
 
-export const homeSteps: SceneStep[] = [
-  {
-    tag: "Detect",
-    ms: "0 ms",
-    title: "Camera detects violation",
-    body: "Computer vision continuously monitors the stop arm and surrounding traffic. The moment the arm extends and a vehicle crosses the threshold, analysis begins.",
-  },
-  {
-    tag: "Alert",
-    ms: "<200 ms",
-    title: "Buzzer fires",
-    body: "The moment a violation is confirmed, a 100 dB onboard buzzer fires. No dispatcher. No delay. No human in the loop.",
-  },
-  {
-    tag: "Log",
-    ms: "Written",
-    title: "Incident logged",
-    body: "Every incident is automatically timestamped with GPS coordinates, image capture, and route ID, creating a legally defensible audit trail.",
-  },
-];
-
 export const techSteps: SceneStep[] = [
   {
     tag: "Detection",

@@ -4,7 +4,6 @@ import PageHero from "@/components/sections/PageHero";
 import ExpoFeature from "@/components/sections/ExpoFeature";
 import Timeline from "@/components/sections/Timeline";
 import Press from "@/components/sections/Press";
-import Proof from "@/components/sections/Proof";
 import ClosingCta from "@/components/sections/ClosingCta";
 import Words from "@/components/system/Words";
 import { recognition } from "@/lib/content";
@@ -37,7 +36,6 @@ export default function RecognitionPage() {
       </section>
 
       <Press />
-      <Proof quoteOnly />
       <ClosingCta />
     </>
   );

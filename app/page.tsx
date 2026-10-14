@@ -1,27 +1,21 @@
 import type { Metadata } from "next";
 import Hero from "@/components/hero/Hero";
-import ProblemTeaser from "@/components/sections/ProblemTeaser";
-import ViolationScene from "@/components/scenes/ViolationScene";
-import Proof from "@/components/sections/Proof";
-import ExpoFeature from "@/components/sections/ExpoFeature";
-import RecognitionStrip from "@/components/sections/RecognitionStrip";
+import Testimonial from "@/components/sections/Testimonial";
+import Explore from "@/components/sections/Explore";
 import ClosingCta from "@/components/sections/ClosingCta";
-import { homeSteps } from "@/lib/content";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// The landing page tells the story once; depth lives on /problem, /technology, and /recognition.
+// The landing page holds only what lives nowhere else: the 3D hero, the testimonial,
+// and an index into the rest of the site. Detail lives on the inner pages.
 export default function Home() {
   return (
     <>
       <Hero />
-      <ProblemTeaser />
-      <ViolationScene steps={homeSteps} />
-      <Proof />
-      <ExpoFeature />
-      <RecognitionStrip compact />
+      <Testimonial />
+      <Explore />
       <ClosingCta />
     </>
   );

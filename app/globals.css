@@ -356,14 +356,6 @@ html:not(.motion-ok) .grain, html:not(.motion-ok) .marquee { animation: none !im
 html.os-reduce .grain, html.os-reduce .marquee { animation: none !important; }
 
 /* ───────────────────────── Section-specific ───────────────────────── */
-/* Proof: 211 cells light in a diagonal wave; bar fills to the measured rate */
-.cells .cell { opacity: 0.85; }
-.js .cells .cell { transition: opacity 0.5s var(--ease-out), transform 0.7s var(--ease-out); transition-delay: var(--cd, 0ms); }
-.js .cells:not([data-revealed]) .cell { opacity: 0.08; transform: scale(0.4); }
-.bar-fill { transform: scaleX(var(--to, 1)); }
-.js .bar .bar-fill { transition: transform 1.8s var(--ease-out) 0.25s; }
-.js .bar:not([data-revealed]) .bar-fill { transform: scaleX(0); }
-
 /* Expo: lens-opening reveal (one-shot clip-path), then transform-only parallax */
 .js .expo-clip { transition: clip-path 1.5s var(--ease-out); }
 .js .expo-clip:not([data-revealed]) { clip-path: inset(16% 12% 16% 12% round 28px); }

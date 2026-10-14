@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Lets a production build run alongside the dev server: NEXT_DIST_DIR=.next-build npm run build
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [390, 640, 768, 1024, 1280, 1440, 1920, 2560],

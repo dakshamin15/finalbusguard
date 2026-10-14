@@ -178,9 +178,9 @@ export default function Hero() {
                     </span>
                   </TransitionLink>
                 </Magnetic>
-                <a href="#how" className="link-u text-[15px] text-fg-2 transition-colors hover:text-fg">
+                <TransitionLink href="/technology" className="link-u text-[15px] text-fg-2 transition-colors hover:text-fg">
                   See how it works
-                </a>
+                </TransitionLink>
               </div>
             </div>
           </div>
