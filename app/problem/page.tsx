@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import PageHero from "@/components/sections/PageHero";
-import ProblemStats from "@/components/scenes/ProblemStats";
+import ScaleField from "@/components/scenes/ScaleField";
+import InterventionGap from "@/components/scenes/InterventionGap";
 import Words from "@/components/system/Words";
 import Brackets from "@/components/system/Brackets";
 import Magnetic from "@/components/system/Magnetic";
@@ -19,26 +20,12 @@ export default function ProblemPage() {
   return (
     <>
       <PageHero eyebrow={problem.eyebrow} title={problem.title} sub={problem.intro} accent={["watches"]} />
-      <ProblemStats />
+      <ScaleField />
+      <InterventionGap />
 
-      {/* Documentation-only failure */}
-      <section aria-labelledby="failure-title" className="section relative">
-        <div className="frame grid-12 gap-y-10">
-          <div className="col-span-4 md:col-span-8 lg:col-span-6">
-            <p className="eyebrow signal" data-reveal>
-              Why current systems fall short
-            </p>
-            <Words as="h2" id="failure-title" text={problem.failureTitle} className="t-l mt-6 text-fg" />
-            <p data-reveal className="t-body-l mt-8 max-w-[34rem] text-fg-2 text-pretty" style={{ "--d": "150ms" } as CSSProperties}>
-              {problem.failureBody}
-            </p>
-          </div>
-          <blockquote className="col-span-4 md:col-span-8 lg:col-span-5 lg:col-start-8 lg:self-end">
-            <Words as="p" text={problem.failureCallout} step={30} className="t-quote text-fg" />
-          </blockquote>
-        </div>
-
-        <ul data-reveal="stagger" className="frame mt-20 grid gap-3 md:grid-cols-3 md:gap-4">
+      {/* Why it matters */}
+      <section aria-label="Why the gap matters" className="section relative pt-8 md:pt-16">
+        <ul data-reveal="stagger" className="frame grid gap-3 md:grid-cols-3 md:gap-4">
           {problem.cards.map((c, i) => (
             <li key={c.title} style={{ "--i": i } as CSSProperties}>
               <article className="lock card relative h-full p-7 md:p-8">
