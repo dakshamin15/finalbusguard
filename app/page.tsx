@@ -1,24 +1,34 @@
-import dynamic from "next/dynamic";
-import StatsBento from "@/components/StatsBento";
-import Achievements from "@/components/Achievements";
-import HowItWorks from "@/components/HowItWorks";
-import TechnologySection from "@/components/TechnologySection";
-import SocialProof from "@/components/SocialProof";
-import Pricing from "@/components/Pricing";
+import type { Metadata } from "next";
+import Hero from "@/components/hero/Hero";
+import ProblemStats from "@/components/scenes/ProblemStats";
+import ViolationScene from "@/components/scenes/ViolationScene";
+import { ProblemIntro, StatusQuo } from "@/components/sections/ProblemIntro";
+import SpecsBento from "@/components/sections/SpecsBento";
+import Proof from "@/components/sections/Proof";
+import ExpoFeature from "@/components/sections/ExpoFeature";
+import RecognitionStrip from "@/components/sections/RecognitionStrip";
+import Press from "@/components/sections/Press";
+import ClosingCta from "@/components/sections/ClosingCta";
+import { homeSteps } from "@/lib/content";
 
-// Three.js uses browser-only globals at module init — skip SSR entirely
-const BusGuardHero = dynamic(() => import("@/components/BusGuardHero"), { ssr: false });
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
     <>
-      <BusGuardHero />
-      <StatsBento />
-      <Achievements />
-      <HowItWorks />
-      <TechnologySection />
-      <SocialProof />
-      <Pricing />
+      <Hero />
+      <ProblemIntro />
+      <ProblemStats />
+      <StatusQuo />
+      <ViolationScene steps={homeSteps} />
+      <SpecsBento />
+      <Proof />
+      <ExpoFeature />
+      <RecognitionStrip />
+      <Press />
+      <ClosingCta />
     </>
   );
 }

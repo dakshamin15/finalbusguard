@@ -1,175 +1,82 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { Metadata } from "next";
 import Image from "next/image";
+import type { CSSProperties } from "react";
+import PageHero from "@/components/sections/PageHero";
+import ClosingCta from "@/components/sections/ClosingCta";
+import Words from "@/components/system/Words";
+import Brackets from "@/components/system/Brackets";
+import { about, site } from "@/lib/content";
 
-const founders = [
-  {
-    name: "Avyay Bharadwaj",
-    role: "Co-Founder — Operations",
-    photo: "/avyay.png",
-    bio: "Leads day-to-day operations, partnerships, and go-to-market strategy. Keeps the team moving and connected with district stakeholders.",
-  },
-  {
-    name: "Daksh",
-    role: "Co-Founder — Marketing",
-    photo: "/daksh.png",
-    bio: "Drives BusGuard's brand, outreach, and competitive positioning. Responsible for pitch strategy and external communications.",
-  },
-  {
-    name: "Kshiteej",
-    role: "Co-Founder — Technology",
-    photo: "/kshiteej.png",
-    bio: "Leads the computer vision model, hardware integration, and software architecture. The technical backbone of the BusGuard system.",
-  },
-];
-
-const values = [
-  {
-    title: "Safety First",
-    description:
-      "Every engineering decision is made with one question: does this make students safer? We never trade safety for cost.",
-  },
-  {
-    title: "Evidence-Based",
-    description:
-      "We don't ship claims we can't back up. Our 95.3% accuracy figure comes from 211 real-world trials, not lab conditions.",
-  },
-  {
-    title: "Partner-Driven",
-    description:
-      "We build alongside districts, drivers, and transportation directors — not in isolation. Their feedback shapes every version.",
-  },
-];
+export const metadata: Metadata = {
+  title: "About",
+  description: "BusGuard is a student-founded company from Henrico County, Virginia, building real-time stop-arm violation detection for school buses.",
+  alternates: { canonical: "/about" },
+};
 
 export default function AboutPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-40 pb-16 px-6 text-center overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(249,115,22,0.07) 0%, transparent 70%)",
-        }} />
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative z-10 max-w-[800px] mx-auto"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "#999999" }}>
-            About
-          </p>
-          <h1 className="text-5xl md:text-6xl font-black heading-tight mb-6" style={{ color: "#111111" }}>
-            Why We Built BusGuard
-          </h1>
-          <p className="text-lg leading-relaxed" style={{ color: "#666666" }}>
-            Every school day, students cross roads in front of buses while other
-            vehicles illegally run stop arms. BusGuard exists to end that.
-          </p>
-        </motion.div>
-      </section>
+      <PageHero eyebrow={about.eyebrow} title={about.title} sub={about.sub} accent={["BusGuard"]} />
 
       {/* Mission */}
-      <section className="relative z-10 py-14 px-6" style={{ background: "#f2f2ef" }}>
-        <div className="max-w-[800px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-[6px] p-10 text-center"
-            style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.08)", borderTop: "2px solid #f97316" }}
-          >
-            <p className="text-xl md:text-2xl font-light leading-relaxed" style={{ color: "#111111", fontStyle: "italic" }}>
-              "A child waiting for their school bus should never have to worry about whether
-              the car behind them will stop. Technology can solve that."
+      <section aria-label="Mission" className="section relative overflow-hidden">
+        <div aria-hidden="true" className="glow left-[10%] top-1/2 h-[50vmin] w-[70vmin] -translate-y-1/2 opacity-30" />
+        <figure className="frame relative grid-12">
+          <blockquote className="col-span-4 md:col-span-8 lg:col-span-10">
+            <Words as="p" text={about.mission} step={22} className="t-quote text-fg" />
+          </blockquote>
+          <figcaption data-reveal className="col-span-4 mt-10 flex items-center gap-4 md:col-span-8" style={{ "--d": "300ms" } as CSSProperties}>
+            <span className="h-px w-10 bg-accent" aria-hidden="true" />
+            <span className="mono text-[11px] uppercase tracking-[0.14em] text-fg-2">{about.missionBy}</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      {/* Founders */}
+      <section aria-labelledby="team-title" className="section relative">
+        <div className="frame">
+          <div className="grid-12 mb-14 gap-y-6 md:mb-20">
+            <div className="col-span-4 md:col-span-6">
+              <p className="eyebrow signal" data-reveal>
+                The team
+              </p>
+              <Words as="h2" id="team-title" text="The founders." className="t-l mt-6 text-fg" />
+            </div>
+            <p data-reveal className="col-span-4 text-fg-2 text-pretty md:col-span-2 md:self-end lg:col-span-4 lg:col-start-9" style={{ "--d": "150ms" } as CSSProperties}>
+              Three students from {site.location}, building the safety system they wanted to see on every bus.
             </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Co-founders */}
-      <section className="relative z-10 pt-16 pb-20 px-6">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="flex items-center gap-5 mb-10">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: "#999999" }}>
-              The Co-Founders
-            </span>
-            <div className="flex-1 h-px" style={{ background: "rgba(0,0,0,0.08)" }} />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {founders.map((f, i) => (
-              <motion.div
-                key={f.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="rounded-[6px] overflow-hidden transition-all duration-200"
-                style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.08)" }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLDivElement;
-                  el.style.transform = "translateY(-2px)";
-                  el.style.borderColor = "rgba(249,115,22,0.4)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLDivElement;
-                  el.style.transform = "translateY(0)";
-                  el.style.borderColor = "rgba(0,0,0,0.08)";
-                }}
-              >
-                {/* Photo */}
-                <div className="relative w-full aspect-[4/3] overflow-hidden" style={{ background: "#f2f2ef" }}>
-                  <Image
-                    src={f.photo}
-                    alt={f.name}
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                {/* Info */}
-                <div className="p-6">
-                  <h3 className="text-lg font-bold mb-0.5 heading-tight" style={{ color: "#111111" }}>{f.name}</h3>
-                  <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "#f97316" }}>
-                    {f.role}
+
+          <ul data-reveal="stagger" className="grid gap-3 md:grid-cols-3 md:gap-4">
+            {about.founders.map((f, i) => (
+              <li key={f.name} style={{ "--i": i } as CSSProperties}>
+                <article className="lock card group relative h-full overflow-hidden p-6 md:p-7">
+                  <Brackets inset={10} />
+                  <div className="relative mx-auto aspect-square w-[72%] max-w-[260px]">
+                    <div aria-hidden="true" className="absolute inset-[-6%] rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100" style={{ background: "radial-gradient(closest-side, var(--accent-glow), transparent)" }} />
+                    <div className="relative h-full w-full overflow-hidden rounded-full ring-1 ring-[var(--line-2)] transition-[box-shadow] duration-500 group-hover:ring-accent">
+                      <Image
+                        src={f.photo}
+                        alt={`Portrait of ${f.name}`}
+                        fill
+                        sizes="(min-width: 768px) 22vw, 70vw"
+                        className="object-cover grayscale transition-[filter,transform] duration-700 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
+                      />
+                    </div>
+                  </div>
+                  <p className="mono mt-10 text-[11px] uppercase tracking-[0.14em] text-accent-ink">
+                    {f.role} ({f.short})
                   </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "#666666" }}>{f.bio}</p>
-                </div>
-              </motion.div>
+                  <h3 className="t-title mt-3 text-fg">{f.name}</h3>
+                  <p className="mt-3 text-fg-2 text-pretty">{f.bio}</p>
+                </article>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="relative z-10 pt-4 pb-24 px-6" style={{ background: "#f2f2ef" }}>
-        <div className="max-w-[1200px] mx-auto">
-          <div className="flex items-center gap-5 mb-10">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: "#999999" }}>
-              Our Values
-            </span>
-            <div className="flex-1 h-px" style={{ background: "rgba(0,0,0,0.08)" }} />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {values.map((v, i) => (
-              <motion.div
-                key={v.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="rounded-[6px] p-8"
-                style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.08)" }}
-              >
-                <div className="w-8 h-1 rounded mb-5" style={{ background: "#f97316" }} />
-                <h3 className="text-base font-bold mb-3 heading-tight" style={{ color: "#111111" }}>{v.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#666666" }}>{v.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ClosingCta />
     </>
   );
 }

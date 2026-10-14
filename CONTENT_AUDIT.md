@@ -6,6 +6,14 @@ Live site (https://www.busguard.net) vs. this local repo. Captured 2026-10-13 fr
 
 ---
 
+## 0. Resolution log (2026-10-14)
+- **C2 Blue Ocean:** confirmed by the certificate image on the live site: "2026 Blue Ocean Student Entrepreneur Competition ... 23,000+ students from 173 countries". Now shown.
+- **C5 USDOT Expo:** confirmed at highways.dot.gov/usdotsafetyexpo: September 18, 2026, U.S. DOT Headquarters, Washington, D.C. The site uses "presented at" plus the Expo's own no-endorsement disclaimer.
+- **C6/C7 Theme:** owner chose a warm light palette built on the logo orange (see DESIGN_PLAN.md revision).
+- **C8:** card retitled "The critical window", so it no longer contradicts its own "2-4 second" body.
+- **C1, C3, C4:** still using the live wording ("Top 10 of 875", "Top 6 in State", "211 trials").
+- **Problem stats:** 43.5M is cited to the NASDPTS 2022-2023 survey (via School Transportation News). **17M and 95,000 could not be traced to a NASDPTS source.** Note that 43.5M ÷ 180 school days ≈ 241,000 per day, which does not match 95,000. These are still shown as "NASDPTS" (as on live) with a TODO in `lib/content.ts`.
+
 ## 1. Conflicts that need your answer
 
 These are places where the brief, the live site, and the local code disagree. I won't publish any of these facts until you confirm them.
