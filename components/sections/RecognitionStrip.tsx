@@ -13,7 +13,7 @@ const items = [
   { id: "expo", date: "September 2026", name: expo.shortName, badge: "Presented", logo: undefined },
 ];
 
-export default function RecognitionStrip() {
+export default function RecognitionStrip({ compact = false }: { compact?: boolean }) {
   const [paused, setPaused] = useState(false);
   const ticker = items.map((i) => `${i.badge} · ${i.name}`);
 
@@ -63,6 +63,7 @@ export default function RecognitionStrip() {
         </button>
       </div>
 
+      {!compact && (
       <ul data-reveal="stagger" className="frame mt-12 grid gap-3 sm:grid-cols-2 md:mt-16 lg:grid-cols-3 lg:gap-4">
         {items.map((a, i) => (
           <li key={a.id} style={{ "--i": i } as CSSProperties}>
@@ -84,6 +85,7 @@ export default function RecognitionStrip() {
           </li>
         ))}
       </ul>
+      )}
     </section>
   );
 }

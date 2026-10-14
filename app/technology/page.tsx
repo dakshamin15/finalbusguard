@@ -3,9 +3,10 @@ import type { CSSProperties } from "react";
 import PageHero from "@/components/sections/PageHero";
 import ViolationScene from "@/components/scenes/ViolationScene";
 import ClosingCta from "@/components/sections/ClosingCta";
+import SpecsBento from "@/components/sections/SpecsBento";
 import Words from "@/components/system/Words";
 import Brackets from "@/components/system/Brackets";
-import { specs, techSteps, technology } from "@/lib/content";
+import { techSteps, technology } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Technology",
@@ -82,29 +83,7 @@ export default function TechnologyPage() {
       </section>
 
 
-      {/* Spec table */}
-      <section aria-labelledby="table-title" className="section relative">
-        <div className="frame grid-12 gap-y-10">
-          <div className="col-span-4 md:col-span-8 lg:col-span-4">
-            <p className="eyebrow signal" data-reveal>
-              Specifications
-            </p>
-            <Words as="h2" id="table-title" text="Under the hood." className="t-l mt-6 text-fg" />
-          </div>
-          <dl data-reveal="stagger" className="col-span-4 border-t border-line md:col-span-8 lg:col-span-8">
-            {specs.table.map((row, i) => (
-              <div
-                key={row.spec}
-                className="group flex flex-col justify-between gap-1 border-b border-line py-5 transition-colors duration-300 hover:bg-[rgba(var(--fg-rgb),0.025)] sm:flex-row sm:items-center sm:px-3"
-                style={{ "--i": i } as CSSProperties}
-              >
-                <dt className="text-[15px] text-fg-2">{row.spec}</dt>
-                <dd className={`mono text-[14px] ${row.hi ? "text-accent-ink" : "text-fg"}`}>{row.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <SpecsBento />
 
       <ClosingCta />
     </>
