@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import DepthPortrait from "@/components/system/DepthPortrait";
 import type { CSSProperties } from "react";
 import PageHero from "@/components/sections/PageHero";
 import ClosingCta from "@/components/sections/ClosingCta";
@@ -52,16 +52,10 @@ export default function AboutPage() {
               <li key={f.name} style={{ "--i": i } as CSSProperties}>
                 <article className="lock card group relative h-full overflow-hidden p-6 md:p-7">
                   <Brackets inset={10} />
-                  <div className="relative mx-auto aspect-square w-[72%] max-w-[260px]">
+                  <div className="relative mx-auto aspect-square w-[84%] max-w-[320px]">
                     <div aria-hidden="true" className="absolute inset-[-6%] rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100" style={{ background: "radial-gradient(closest-side, var(--accent-glow), transparent)" }} />
                     <div className="relative h-full w-full overflow-hidden rounded-full ring-1 ring-[var(--line-2)] transition-[box-shadow] duration-500 group-hover:ring-accent">
-                      <Image
-                        src={f.photo}
-                        alt={`Portrait of ${f.name}`}
-                        fill
-                        sizes="(min-width: 700px) 22vw, 70vw"
-                        className="object-cover grayscale transition-[filter,transform] duration-700 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
-                      />
+                      <DepthPortrait src={f.photo} depth={f.depth} alt={`Portrait of ${f.name}`} sizes="(min-width: 700px) 26vw, 80vw" />
                     </div>
                   </div>
                   <p className="mono mt-10 text-[11px] uppercase tracking-[0.14em] text-accent-ink">

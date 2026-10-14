@@ -299,6 +299,7 @@ export const about = {
       role: "Chief Executive Officer",
       short: "CEO",
       photo: "/daksh.png",
+      depth: "/media/team/daksh-depth.png",
       bio: "Leads BusGuard’s overall strategy, partnerships, and growth. Directs the organization’s vision and long-term development.",
     },
     {
@@ -306,6 +307,7 @@ export const about = {
       role: "Chief Technical Officer",
       short: "CTO",
       photo: "/kshiteej.png",
+      depth: "/media/team/kshiteej-depth.png",
       bio: "Leads the computer vision model, hardware integration, and software architecture. The technical backbone of the BusGuard system.",
     },
     {
@@ -313,6 +315,7 @@ export const about = {
       role: "Chief Operating Officer",
       short: "COO",
       photo: "/avyay.png",
+      depth: "/media/team/avyay-depth.png",
       bio: "Leads hardware testing and design, day-to-day operations, and pitches. Also directs external communication.",
     },
   ],
