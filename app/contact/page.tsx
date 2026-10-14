@@ -1,243 +1,46 @@
-"use client";
+import type { Metadata } from "next";
+import type { CSSProperties } from "react";
+import PageHero from "@/components/sections/PageHero";
+import ContactForm from "@/components/sections/ContactForm";
+import { contact, site } from "@/lib/content";
 
-import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+export const metadata: Metadata = {
+  title: "Contact Sales",
+  description: "Contact sales, ask about pricing, or discuss a district deployment. We respond within one business day.",
+  alternates: { canonical: "/contact" },
+};
+
+const details = [
+  { k: "Email", v: site.email, href: `mailto:${site.email}` },
+  { k: "Location", v: site.location },
+  { k: "Response time", v: contact.response },
+];
 
 export default function ContactPage() {
-  const formRef = useRef(null);
-  const formIn  = useInView(formRef, { once: true, margin: "-80px" });
-
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [form, setForm] = useState({
-    name: "", email: "", organization: "", role: "", message: "", type: "sales",
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const formData = {
-      access_key: "645f2ac3-b12d-41bc-b131-b89abec10c4e",
-      subject: `BusGuard Inquiry , ${form.type} , ${form.organization || form.name}`,
-      from_name: form.name,
-      ...form
-    };
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-      if (result.success) {
-        setSubmitted(true);
-      } else {
-        console.error("Submission failed:", result.message);
-        alert("Something went wrong. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Network error. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const inputStyle = {
-    background: "#f8f8f5",
-    border: "1px solid rgba(0,0,0,0.12)",
-    color: "#111111",
-  };
-
   return (
     <>
-      {/* ── HERO ──────────────────────────────────────────────────── */}
-      <section
-        className="relative pt-44 pb-20 px-6 overflow-hidden"
-        style={{
-          background: "#f2f2ef",
-          backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.11) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
-        }}
-      >
-        <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 55% 45% at 50% -5%, rgba(249,115,22,0.13) 0%, transparent 70%)",
-        }} />
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 max-w-[860px] mx-auto"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-[10px] font-bold uppercase tracking-[0.28em]" style={{ color: "#f97316" }}>Contact</span>
-            <div className="flex-1 h-px" style={{ background: "rgba(249,115,22,0.25)" }} />
+      <PageHero eyebrow={contact.eyebrow} title={contact.title} sub={contact.sub} accent={["safety"]} />
+      <section aria-label="Contact details and form" className="relative pb-[clamp(96px,12vw,180px)]">
+        <div className="frame grid-12 gap-y-12">
+          <dl className="col-span-4 md:col-span-8 lg:col-span-4">
+            {details.map((d, i) => (
+              <div key={d.k} className="fade-load border-t border-line py-6" style={{ "--d": `${650 + i * 90}ms` } as CSSProperties}>
+                <dt className="mono text-[11px] uppercase tracking-[0.14em] text-fg-3">{d.k}</dt>
+                <dd className="font-display mt-2 text-[clamp(1.25rem,1rem+0.8vw,1.75rem)] font-semibold tracking-[-0.02em] text-fg">
+                  {d.href ? (
+                    <a href={d.href} className="link-u always">
+                      {d.v}
+                    </a>
+                  ) : (
+                    d.v
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <div className="fade-load col-span-4 md:col-span-8 lg:col-span-7 lg:col-start-6" style={{ "--d": "700ms" } as CSSProperties}>
+            <ContactForm />
           </div>
-          <h1
-            className="font-black heading-tight mb-5"
-            style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)", color: "#111111", lineHeight: 1.0 }}
-          >
-            Let&apos;s Talk<br />
-            <span style={{ color: "#f97316" }}>Safety.</span>
-          </h1>
-          <p className="text-lg leading-relaxed max-w-lg" style={{ color: "#555555" }}>
-            Contact sales, ask about pricing, or discuss a district deployment.
-            We respond within one business day.
-          </p>
-        </motion.div>
-      </section>
-
-      {/* ── FORM + INFO ───────────────────────────────────────────── */}
-      <section
-        ref={formRef}
-        className="relative py-20 px-6"
-        style={{ background: "#ffffff" }}
-      >
-        <div className="max-w-[1000px] mx-auto grid grid-cols-1 md:grid-cols-5 gap-12">
-
-          {/* Left , contact info */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={formIn ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="md:col-span-2 flex flex-col gap-8"
-          >
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.28em] mb-5" style={{ color: "#f97316" }}>
-                Contact Details
-              </p>
-              <div className="flex flex-col gap-5">
-                {[
-                  { label: "Email",         value: "info@busguard.net", href: "mailto:info@busguard.net" },
-                  { label: "Location",      value: "Henrico County, Virginia" },
-                  { label: "Response Time", value: "Within 1 business day" },
-                ].map(({ label, value, href }) => (
-                  <div key={label}>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] mb-1" style={{ color: "#aaa" }}>{label}</p>
-                    {href
-                      ? <a href={href} className="text-sm font-semibold" style={{ color: "#f97316" }}>{value}</a>
-                      : <p className="text-sm font-semibold" style={{ color: "#111" }}>{value}</p>
-                    }
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </motion.div>
-
-          {/* Right , form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={formIn ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-3"
-          >
-            {submitted ? (
-              <div className="rounded-[10px] p-12 text-center"
-                style={{ background: "#f8f8f5", border: "1px solid rgba(249,115,22,0.3)" }}>
-                <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-                  style={{ background: "rgba(249,115,22,0.10)", border: "1px solid rgba(249,115,22,0.25)" }}>
-                  <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
-                    <path d="M5 14l6 6 12-12" stroke="#f97316" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold mb-2" style={{ color: "#111" }}>Message Sent!</h3>
-                <p className="text-sm" style={{ color: "#666" }}>
-                  Thanks for reaching out. We&apos;ll get back to you within one business day.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit}
-                className="rounded-[10px] p-8 flex flex-col gap-5"
-                style={{ background: "#f8f8f5", border: "1px solid rgba(0,0,0,0.08)" }}
-              >
-                <h3 className="text-base font-bold mb-1" style={{ color: "#111" }}>Send a Message</h3>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs mb-1.5 block font-medium" style={{ color: "#666" }}>Full Name *</label>
-                    <input required type="text" name="name" value={form.name}
-                      onChange={handleChange} placeholder="Jane Smith"
-                      className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-colors"
-                      style={inputStyle} />
-                  </div>
-                  <div>
-                    <label className="text-xs mb-1.5 block font-medium" style={{ color: "#666" }}>Email *</label>
-                    <input required type="email" name="email" value={form.email}
-                      onChange={handleChange} placeholder="jane@district.edu"
-                      className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-colors"
-                      style={inputStyle} />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs mb-1.5 block font-medium" style={{ color: "#666" }}>Organization</label>
-                    <input type="text" name="organization" value={form.organization}
-                      onChange={handleChange} placeholder="County School District"
-                      className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-colors"
-                      style={inputStyle} />
-                  </div>
-                  <div>
-                    <label className="text-xs mb-1.5 block font-medium" style={{ color: "#666" }}>I am a...</label>
-                    <select name="role" value={form.role} onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-colors"
-                      style={{ ...inputStyle, appearance: "none" as const }}>
-                      <option value="">Select role</option>
-                      <option value="director">Transportation Director</option>
-                      <option value="superintendent">Superintendent</option>
-                      <option value="safety">Safety Officer</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-xs mb-1.5 block font-medium" style={{ color: "#666" }}>Inquiry Type</label>
-                  <div className="flex gap-2 flex-wrap">
-                    {["sales", "pricing", "technical", "partnership"].map(t => (
-                      <button key={t} type="button"
-                        onClick={() => setForm(prev => ({ ...prev, type: t }))}
-                        className="px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200"
-                        style={form.type === t
-                          ? { background: "#f97316", color: "#fff" }
-                          : { background: "#fff", border: "1px solid rgba(0,0,0,0.15)", color: "#666" }
-                        }
-                      >
-                        {t === "sales" ? "Contact Sales" : t === "pricing" ? "Pricing" : t === "technical" ? "Technical" : "Partnership"}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-xs mb-1.5 block font-medium" style={{ color: "#666" }}>Message</label>
-                  <textarea name="message" value={form.message} onChange={handleChange}
-                    placeholder="Tell us about your district, fleet size, or specific questions..."
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-colors resize-none"
-                    style={inputStyle} />
-                </div>
-
-                <button type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-3 rounded-lg font-bold text-white text-sm transition-all duration-200 hover:opacity-90 disabled:opacity-50"
-                  style={{ background: "#f97316" }}>
-                  {isSubmitting ? "Sending..." : "Send Message →"}
-                </button>
-              </form>
-            )}
-          </motion.div>
         </div>
       </section>
     </>

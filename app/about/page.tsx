@@ -1,174 +1,76 @@
-"use client";
+import type { Metadata } from "next";
+import DepthPortrait from "@/components/system/DepthPortrait";
+import type { CSSProperties } from "react";
+import PageHero from "@/components/sections/PageHero";
+import ClosingCta from "@/components/sections/ClosingCta";
+import Words from "@/components/system/Words";
+import Brackets from "@/components/system/Brackets";
+import { about, site } from "@/lib/content";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import Image from "next/image";
-
-const founders = [
-  {
-    name: "Avyay Bharadwaj",
-    role: "Chief Operating Officer (COO)",
-    photo: "/avyay.png",
-    bio: "Leads hardware testing and design, day-to-day operations, and pitches. Also directs external communication.",
-  },
-  {
-    name: "Daksh Amin",
-    role: "Chief Executive Officer (CEO)",
-    photo: "/daksh.png",
-    bio: "Leads BusGuard’s overall strategy, partnerships, and growth. Directs the organization’s vision and long-term development.",
-  },
-  {
-    name: "Kshiteej Herode",
-    role: "Chief Technical Officer (CTO)",
-    photo: "/kshiteej.png",
-    bio: "Leads the computer vision model, hardware integration, and software architecture. The technical backbone of the BusGuard system.",
-  },
-];
+export const metadata: Metadata = {
+  title: "About",
+  description: "BusGuard is a student-founded company from Henrico County, Virginia, building real-time stop-arm violation detection for school buses.",
+  alternates: { canonical: "/about" },
+};
 
 export default function AboutPage() {
-  const missionRef  = useRef(null);
-  const foundersRef = useRef(null);
-  const missionIn   = useInView(missionRef,  { once: true, margin: "-80px" });
-  const foundersIn  = useInView(foundersRef, { once: true, margin: "-80px" });
-
   return (
     <>
-      {/* ── HERO ──────────────────────────────────────────────────── */}
-      <section
-        className="relative pt-44 pb-28 px-6 overflow-hidden"
-        style={{
-          background: "#f2f2ef",
-          backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.11) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
-        }}
-      >
-        <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 55% 45% at 50% -5%, rgba(249,115,22,0.13) 0%, transparent 70%)",
-        }} />
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 max-w-[860px] mx-auto"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-[10px] font-bold uppercase tracking-[0.28em]" style={{ color: "#f97316" }}>About</span>
-            <div className="flex-1 h-px" style={{ background: "rgba(249,115,22,0.25)" }} />
+      <PageHero eyebrow={about.eyebrow} title={about.title} sub={about.sub} accent={["BusGuard"]} />
+
+      {/* Mission */}
+      <section aria-label="Mission" className="section relative overflow-hidden">
+        <div aria-hidden="true" className="glow left-[10%] top-1/2 h-[50vmin] w-[70vmin] -translate-y-1/2 opacity-30" />
+        <figure className="frame relative grid-12">
+          <blockquote className="col-span-4 md:col-span-8 lg:col-span-10">
+            <Words as="p" text={about.mission} step={22} className="t-quote text-fg" />
+          </blockquote>
+          <figcaption data-reveal className="col-span-4 mt-10 flex items-center gap-4 md:col-span-8" style={{ "--d": "300ms" } as CSSProperties}>
+            <span className="h-px w-10 bg-accent" aria-hidden="true" />
+            <span className="mono text-[11px] uppercase tracking-[0.14em] text-fg-2">{about.missionBy}</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      {/* Founders */}
+      <section aria-labelledby="team-title" className="section relative">
+        <div className="frame">
+          <div className="grid-12 mb-14 gap-y-6 md:mb-20">
+            <div className="col-span-4 md:col-span-6">
+              <p className="eyebrow signal" data-reveal>
+                The team
+              </p>
+              <Words as="h2" id="team-title" text="The founders." className="t-l mt-6 text-fg" />
+            </div>
+            <p data-reveal className="col-span-4 text-fg-2 text-pretty md:col-span-2 md:self-end lg:col-span-4 lg:col-start-9" style={{ "--d": "150ms" } as CSSProperties}>
+              Three students from {site.location}, building the safety system they wanted to see on every bus.
+            </p>
           </div>
-          <h1
-            className="font-black heading-tight mb-6"
-            style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)", color: "#111111", lineHeight: 1.0 }}
-          >
-            Why We Built<br />
-            <span style={{ color: "#f97316" }}>BusGuard.</span>
-          </h1>
-          <p className="text-lg leading-relaxed max-w-xl" style={{ color: "#555555" }}>
-            Every school day, students cross roads in front of buses while other
-            vehicles illegally run stop arms. BusGuard exists to end that.
-          </p>
-        </motion.div>
-      </section>
 
-      {/* ── MISSION QUOTE ─────────────────────────────────────────── */}
-      <section
-        ref={missionRef}
-        className="relative py-24 px-6 overflow-hidden"
-        style={{ background: "#111111" }}
-      >
-        <div className="absolute inset-0 pointer-events-none" style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }} />
-        <div className="relative z-10 max-w-[800px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={missionIn ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.65 }}
-          >
-            <svg className="mb-8" style={{ opacity: 0.18 }} width="40" height="32" viewBox="0 0 36 28" fill="none">
-              <path d="M0 28V18C0 7.955 5.856 2.473 17.569 0L18.9 3.417C13.938 4.651 11.008 7.393 10.108 11.641H16.2V28H0ZM19.8 28V18C19.8 7.955 25.656 2.473 37.369 0L38.7 3.417C33.738 4.651 30.808 7.393 29.908 11.641H36V28H19.8Z" fill="#ffffff" />
-            </svg>
-            <blockquote
-              className="font-light leading-relaxed mb-10"
-              style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.75rem)", color: "#ffffff", fontStyle: "italic" }}
-            >
-              "A child waiting for their school bus should never have to worry about whether
-              the car behind them will stop. Technology can solve that."
-            </blockquote>
-            <div className="flex items-center gap-4">
-              <div className="w-px h-8" style={{ background: "#f97316" }} />
-              <span className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>
-                The BusGuard Team
-              </span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── FOUNDERS ──────────────────────────────────────────────── */}
-      <section
-        ref={foundersRef}
-        className="relative py-28 px-6"
-        style={{ background: "#ffffff" }}
-      >
-        <div className="max-w-[1100px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={foundersIn ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55 }}
-            className="mb-14"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-[10px] font-bold uppercase tracking-[0.28em]" style={{ color: "#f97316" }}>The Team</span>
-              <div className="flex-1 h-px" style={{ background: "rgba(249,115,22,0.25)" }} />
-            </div>
-            <h2
-              className="font-black heading-tight"
-              style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#111111" }}
-            >
-              The Founders.
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {founders.map((f, i) => (
-              <motion.div
-                key={f.name}
-                initial={{ opacity: 0, y: 32 }}
-                animate={foundersIn ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.55, delay: i * 0.12 }}
-                className="rounded-[10px] overflow-hidden group"
-                style={{
-                  background: "#ffffff",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                  transition: "border-color 0.2s, transform 0.2s",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(249,115,22,0.45)";
-                  (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,0,0,0.08)";
-                  (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-                }}
-              >
-                <div className="relative w-full aspect-[4/3] overflow-hidden" style={{ background: "#f2f2ef" }}>
-                  <Image src={f.photo} alt={f.name} fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, 33vw" />
-                  {/* orange bottom bar on hover */}
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: "#f97316", opacity: 0.7 }} />
-                </div>
-                <div className="p-6">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] mb-1" style={{ color: "#f97316" }}>
-                    {f.role}
+          <ul data-reveal="stagger" className="grid gap-3 md:grid-cols-3 md:gap-4">
+            {about.founders.map((f, i) => (
+              <li key={f.name} style={{ "--i": i } as CSSProperties}>
+                <article className="lock card group relative h-full overflow-hidden p-6 md:p-7">
+                  <Brackets inset={10} />
+                  <div className="relative mx-auto aspect-square w-[84%] max-w-[320px]">
+                    <div aria-hidden="true" className="absolute inset-[-6%] rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100" style={{ background: "radial-gradient(closest-side, var(--accent-glow), transparent)" }} />
+                    <div className="relative h-full w-full overflow-hidden rounded-full ring-1 ring-[var(--line-2)] transition-[box-shadow] duration-500 group-hover:ring-accent">
+                      <DepthPortrait src={f.photo} depth={f.depth} alt={`Portrait of ${f.name}`} sizes="(min-width: 700px) 26vw, 80vw" />
+                    </div>
+                  </div>
+                  <p className="mono mt-10 text-[11px] uppercase tracking-[0.14em] text-accent-ink">
+                    {f.role} ({f.short})
                   </p>
-                  <h3 className="text-xl font-black heading-tight mb-3" style={{ color: "#111111" }}>{f.name}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "#666666" }}>{f.bio}</p>
-                </div>
-              </motion.div>
+                  <h3 className="t-title mt-3 text-fg">{f.name}</h3>
+                  <p className="mt-3 text-fg-2 text-pretty">{f.bio}</p>
+                </article>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
+
+      <ClosingCta />
     </>
   );
 }
