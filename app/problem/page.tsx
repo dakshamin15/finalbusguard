@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 import ProblemHero from "@/components/sections/ProblemHero";
 import FailurePanels from "@/components/scenes/FailurePanels";
 import ScaleField from "@/components/scenes/ScaleField";
-import InterventionGap from "@/components/scenes/InterventionGap";
+import DangerScene from "@/components/scenes/DangerScene";
 import Words from "@/components/system/Words";
 import Magnetic from "@/components/system/Magnetic";
 import { TransitionLink } from "@/components/system/Transition";
@@ -21,7 +21,7 @@ export default function ProblemPage() {
     <>
       <ProblemHero />
       <ScaleField />
-      <InterventionGap />
+      <DangerScene />
 
       <FailurePanels />
 
