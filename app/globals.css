@@ -397,8 +397,3 @@ html:not(.motion-ok) .expo-clip { clip-path: none !important; }
 @keyframes needle { 0% { transform: rotate(-52deg); } 22% { transform: rotate(38deg); } 41% { transform: rotate(-8deg); } 63% { transform: rotate(61deg); } 82% { transform: rotate(-30deg); } 100% { transform: rotate(-52deg); } }
 html.os-reduce .lens-ring, html.os-reduce .lens-iris, html.os-reduce .gauge-needle { animation: none !important; }
 
-/* Cursor follower (pointer: fine, motion on) */
-.cursor-ring, .cursor-dot { position: fixed; left: 0; top: 0; pointer-events: none; z-index: 140; border-radius: 999px; will-change: transform; }
-.cursor-ring { width: 38px; height: 38px; margin: -19px 0 0 -19px; box-shadow: inset 0 0 0 1.5px rgba(var(--fg-rgb), 0.55); transition: opacity 0.3s, background-color 0.3s; }
-.cursor-ring[data-hot="1"] { background: rgba(220, 100, 32, 0.14); box-shadow: inset 0 0 0 1.5px var(--accent); }
-.cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--accent); }

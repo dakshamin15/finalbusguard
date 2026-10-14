@@ -7,7 +7,6 @@ import SmoothScroll from "@/components/system/SmoothScroll";
 import RevealObserver from "@/components/system/RevealObserver";
 import { TransitionProvider } from "@/components/system/Transition";
 import { MotionPrefs } from "@/components/system/MotionPrefs";
-import Cursor from "@/components/system/Cursor";
 import { site } from "@/lib/content";
 
 const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-archivo", display: "swap" });
@@ -73,7 +72,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </MotionPrefs>
         <SmoothScroll />
         <RevealObserver />
-        <Cursor />
         <div className="grain" aria-hidden="true" />
       </body>
     </html>
