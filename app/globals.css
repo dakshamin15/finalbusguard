@@ -234,14 +234,14 @@ html.lenis, html.lenis body { height: auto; }
 .js [data-reveal="words"], .js [data-reveal="stagger"] { opacity: 1 !important; transform: none !important; }
 
 .rw { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0.02em 0.12em; margin: -0.06em -0.02em -0.12em; }
-.rw > span { display: inline-block; will-change: transform; }
+.rw > span { display: inline-block; will-change: transform; transform-origin: 0% 100%; }
 .js [data-reveal="words"] .rw > span {
   transition: transform var(--dur-reveal) var(--ease-out);
   transition-delay: calc(var(--i, 0) * var(--step, 60ms) + var(--d, 0ms));
 }
-.js [data-reveal="words"]:not([data-revealed]) .rw > span { transform: translate3d(0, 112%, 0); }
+.js [data-reveal="words"]:not([data-revealed]) .rw > span { transform: translate3d(0, 112%, 0) rotate(7deg); }
 .js .rw-load .rw > span { animation: rw-in var(--dur-reveal) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 60ms + var(--d, 80ms)); }
-@keyframes rw-in { from { transform: translate3d(0, 112%, 0); } }
+@keyframes rw-in { from { transform: translate3d(0, 112%, 0) rotate(7deg); } }
 
 .js [data-reveal="stagger"] > * { transition: opacity 0.8s var(--ease-out), transform 1s var(--ease-out); transition-delay: calc(var(--i, 0) * 80ms + var(--d, 0ms)); }
 .js [data-reveal="stagger"]:not([data-revealed]) > * { opacity: 0; transform: translate3d(0, 24px, 0); }
@@ -383,3 +383,22 @@ html:not(.motion-ok) .expo-clip { clip-path: none !important; }
 @keyframes ico-blink { 50% { opacity: 0.2; } }
 @keyframes ico-drop { 50% { transform: translateY(1.5px); } }
 @keyframes ico-rise { 50% { transform: scaleY(0.55); } }
+
+/* Problem page: watching lens + gauge (transform/opacity only) */
+.lens-rec { animation: rec 1.6s steps(1) infinite; }
+@keyframes rec { 50% { opacity: 0.15; } }
+.motion-ok .lens-iris { animation: iris 6s var(--ease-in-out) infinite; }
+@keyframes iris { 0%, 100% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(18deg) scale(0.9); } }
+.motion-ok .lens-core { animation: core 2.4s var(--ease-in-out) infinite; }
+@keyframes core { 50% { transform: scale(0.55); opacity: 0.6; } }
+.motion-ok .lens-ring { animation: ring 40s linear infinite; }
+@keyframes ring { to { transform: rotate(360deg); } }
+.motion-ok .gauge-needle { animation: needle 2.8s var(--ease-in-out) infinite; }
+@keyframes needle { 0% { transform: rotate(-52deg); } 22% { transform: rotate(38deg); } 41% { transform: rotate(-8deg); } 63% { transform: rotate(61deg); } 82% { transform: rotate(-30deg); } 100% { transform: rotate(-52deg); } }
+html.os-reduce .lens-ring, html.os-reduce .lens-iris, html.os-reduce .gauge-needle { animation: none !important; }
+
+/* Cursor follower (pointer: fine, motion on) */
+.cursor-ring, .cursor-dot { position: fixed; left: 0; top: 0; pointer-events: none; z-index: 140; border-radius: 999px; will-change: transform; }
+.cursor-ring { width: 38px; height: 38px; margin: -19px 0 0 -19px; box-shadow: inset 0 0 0 1.5px rgba(var(--fg-rgb), 0.55); transition: opacity 0.3s, background-color 0.3s; }
+.cursor-ring[data-hot="1"] { background: rgba(220, 100, 32, 0.14); box-shadow: inset 0 0 0 1.5px var(--accent); }
+.cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--accent); }

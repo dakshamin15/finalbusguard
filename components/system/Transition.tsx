@@ -28,6 +28,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const curtain = useRef<HTMLDivElement>(null);
+  const lead = useRef<HTMLDivElement>(null);
   const pending = useRef(false);
   const busy = useRef(false);
   const [label, setLabel] = useState("");
@@ -44,8 +45,11 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       busy.current = true;
       setLabel(labelFor(href));
       el.style.visibility = "visible";
+      if (lead.current) lead.current.style.visibility = "visible";
       window.__lenis?.stop();
-      await animate(el, { transform: ["translate3d(0,100%,0)", "translate3d(0,0%,0)"] }, { duration: 0.55, ease: bezier.inOut });
+      if (lead.current) animate(lead.current, { transform: ["translate3d(0,100%,0)", "translate3d(0,0%,0)"] }, { duration: 0.5, ease: bezier.inOut });
+      await animate(el, { transform: ["translate3d(0,100%,0)", "translate3d(0,0%,0)"] }, { duration: 0.6, delay: 0.08, ease: bezier.inOut });
+      if (lead.current) lead.current.style.transform = "translate3d(0,100%,0)";
       pending.current = true;
       router.push(href);
     },
@@ -84,12 +88,14 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         className="fixed inset-0 z-[120] flex items-center justify-center bg-bg-2"
         style={{ transform: "translate3d(0,100%,0)", visibility: "hidden", willChange: "transform" }}
       >
+        <div className="mono absolute bottom-8 left-[var(--gutter)] text-[11px] uppercase tracking-[0.14em] text-fg-3">BusGuard</div>
         <div className="absolute inset-x-0 top-0 h-px bg-accent" style={{ boxShadow: "0 0 24px 2px var(--accent)" }} />
         <div className="flex items-center gap-3">
           <span className="h-1.5 w-1.5 rounded-full bg-accent" style={{ boxShadow: "0 0 12px var(--accent)" }} />
           <span className="eyebrow text-fg">{label}</span>
         </div>
       </div>
+      <div ref={lead} aria-hidden="true" className="fixed inset-0 z-[119] bg-accent" style={{ transform: "translate3d(0,100%,0)", visibility: "hidden", willChange: "transform" }} />
       <p aria-live="polite" className="sr-only">
         {announce}
       </p>
