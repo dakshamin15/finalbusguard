@@ -2,7 +2,7 @@
 
 Branch: `redesign/site-v2` · Status: **built.**
 
-> **Revision (2026-10-14):** after review, the dark theme was replaced with a warm light palette: cream paper `#F3EEE6`, white surfaces, ink `#18130F`, and the logo orange tuned to `#DC6420` (with `#A3450F` for small orange text, to pass contrast). The closing CTA is a full orange band. Everything else in this plan (type, motion, architecture) shipped as written. A visitor-facing **Motion on/off** toggle was added in the footer, because the OS "reduce motion" setting otherwise hides all choreography.
+> **Revision (2026-10-14):** after review, the dark theme was replaced with a warm light palette: cream paper `#F3EEE6`, white surfaces, ink `#18130F`, and the logo orange tuned to `#DC6420` (with `#A3450F` for small orange text, to pass contrast). The closing CTA is a full orange band. Everything else in this plan (type, motion, architecture) shipped as written. A visitor-facing **Motion on/off** toggle was added in the footer, because the OS "reduce motion" setting otherwise hides all choreography. **Update:** motion is now on by default; the OS setting only removes autonomous motion (smooth-scroll easing, parallax, ticker, grain), and the toggle turns everything off. Pinned scenes start at 700px wide.
 Content source: `CONTENT_AUDIT.md`. Every fact on the site comes from there.
 
 ---

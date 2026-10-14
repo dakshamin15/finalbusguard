@@ -21,12 +21,14 @@ export const spring = {
   tilt: { stiffness: 180, damping: 22, mass: 0.6 },
 };
 
-export const DESKTOP_QUERY = "(min-width: 768px)";
-export const MOBILE_QUERY = "(max-width: 767px)";
+export const DESKTOP_QUERY = "(min-width: 700px)";
+export const MOBILE_QUERY = "(max-width: 699px)";
 export const MOTION_KEY = "bg-motion";
 
-/** True unless the visitor (or their OS) asked for reduced motion. Set on <html> before first paint. */
+/** True unless the visitor turned motion off with the footer toggle. Set on <html> before first paint. */
 export const motionOK = () => typeof document !== "undefined" && document.documentElement.classList.contains("motion-ok");
+/** The OS asked for reduced motion: skip motion that runs on its own (smooth scroll, parallax). */
+export const osReduce = () => typeof document !== "undefined" && document.documentElement.classList.contains("os-reduce");
 /** Pinned, scroll-scrubbed choreography: desktop/tablet with motion allowed. */
 export const pinMode = () => motionOK() && window.matchMedia(DESKTOP_QUERY).matches;
 

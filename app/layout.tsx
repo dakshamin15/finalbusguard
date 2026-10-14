@@ -53,7 +53,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(function(){var d=document.documentElement;d.classList.add('js');var ok=!matchMedia('(prefers-reduced-motion: reduce)').matches;try{var s=localStorage.getItem('bg-motion');if(s==='on')ok=true;if(s==='off')ok=false}catch(e){}if(ok)d.classList.add('motion-ok')})()",
+              "(function(){var d=document.documentElement;d.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('os-reduce');var ok=true;try{if(localStorage.getItem('bg-motion')==='off')ok=false}catch(e){}if(ok)d.classList.add('motion-ok')})()",
           }}
         />
       </head>

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { getGsap } from "@/lib/gsap";
-import { motionOK } from "@/lib/motion";
+import { motionOK, osReduce } from "@/lib/motion";
 
 declare global {
   interface Window {
@@ -17,7 +17,7 @@ export default function SmoothScroll() {
 
   useEffect(() => {
     const { gsap, ScrollTrigger } = getGsap();
-    if (!motionOK()) return;
+    if (!motionOK() || osReduce()) return;
 
     const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, anchors: { offset: -72 } });
     window.__lenis = lenis;

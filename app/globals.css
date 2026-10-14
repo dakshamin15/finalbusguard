@@ -89,7 +89,7 @@ html.lenis, html.lenis body { height: auto; }
   grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: 16px;
 }
-@media (min-width: 768px) { .grid-12 { grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: 20px; } }
+@media (min-width: 700px) { .grid-12 { grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: 20px; } }
 @media (min-width: 1024px) { .grid-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; } }
 
 .section { padding-block: clamp(88px, 11vw, 168px); position: relative; }
@@ -295,7 +295,7 @@ html.lenis, html.lenis body { height: auto; }
    Pin with CSS sticky (no spacers, no CLS); GSAP only reads progress. */
 .track { position: relative; }
 .pin-only { display: none !important; }
-@media (min-width: 768px) {
+@media (min-width: 700px) {
   .motion-ok .track { height: var(--track, 300svh); }
   .motion-ok .track > .stick { position: sticky; top: 0; height: 100svh; overflow: hidden; }
   .motion-ok .pin-only { display: block !important; }
@@ -342,7 +342,9 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ───────────────────────── Reduced motion ─────────────────────────
-   .motion-ok is set before paint from prefers-reduced-motion, and can be
+   .motion-ok is on by default and can be turned off with the footer toggle.
+   The OS reduce-motion setting adds .os-reduce, which removes autonomous motion
+   (smooth-scroll easing, parallax, ticker, grain) but keeps scroll-driven scenes.
    overridden by the visitor with the Motion toggle in the footer. */
 html.js:not(.motion-ok) *, html.js:not(.motion-ok) *::before, html.js:not(.motion-ok) *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
 html.js:not(.motion-ok) [data-reveal]:not([data-revealed]) { transform: none; }
@@ -350,6 +352,8 @@ html.js:not(.motion-ok) [data-reveal="words"]:not([data-revealed]) .rw > span { 
 html.js:not(.motion-ok) [data-reveal="stagger"]:not([data-revealed]) > * { transform: none; }
 html.js:not(.motion-ok) [data-reveal] { transition: opacity 0.4s linear; }
 html:not(.motion-ok) .grain, html:not(.motion-ok) .marquee { animation: none !important; }
+/* OS "reduce motion": keep scroll-driven storytelling, drop motion that runs on its own */
+html.os-reduce .grain, html.os-reduce .marquee { animation: none !important; }
 
 /* ───────────────────────── Section-specific ───────────────────────── */
 /* Proof: 211 cells light in a diagonal wave; bar fills to the measured rate */

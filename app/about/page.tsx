@@ -59,7 +59,7 @@ export default function AboutPage() {
                         src={f.photo}
                         alt={`Portrait of ${f.name}`}
                         fill
-                        sizes="(min-width: 768px) 22vw, 70vw"
+                        sizes="(min-width: 700px) 22vw, 70vw"
                         className="object-cover grayscale transition-[filter,transform] duration-700 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
                       />
                     </div>

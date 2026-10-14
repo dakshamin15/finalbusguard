@@ -6,7 +6,7 @@ import Brackets from "@/components/system/Brackets";
 import { ArrowUpRight } from "@/components/system/Icons";
 import { expo } from "@/lib/content";
 import { getGsap } from "@/lib/gsap";
-import { motionOK } from "@/lib/motion";
+import { motionOK, osReduce } from "@/lib/motion";
 
 /**
  * Full-bleed photograph from the USDOT Road Safety Innovation Expo.
@@ -18,7 +18,7 @@ export default function ExpoFeature({ as = "h2", priority = false }: { as?: "h1"
   const H = as;
 
   useEffect(() => {
-    if (!motionOK()) return;
+    if (!motionOK() || osReduce()) return;
     const { gsap } = getGsap();
     const ctx = gsap.context(() => {
       gsap.fromTo(
