@@ -20,7 +20,7 @@ const ORDER: { key: CalloutKey; side: "l" | "r"; dx: number; dy: number }[] = [
   { key: "housing", side: "l", dx: -190, dy: 70 },
   { key: "pcb", side: "r", dx: 200, dy: 90 },
   { key: "edgeProc", side: "l", dx: -210, dy: -40 },
-  { key: "wifi", side: "r", dx: 230, dy: 0 },
+  { key: "wifi", side: "r", dx: 300, dy: -30 },
   { key: "buzzers", side: "l", dx: -170, dy: -140 },
   { key: "varifocal", side: "l", dx: -260, dy: 170 },
 ];
