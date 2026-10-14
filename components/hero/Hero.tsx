@@ -21,7 +21,6 @@ const ORDER: { key: CalloutKey; side: "l" | "r"; dx: number; dy: number }[] = [
   { key: "pcb", side: "r", dx: 200, dy: 90 },
   { key: "edgeProc", side: "l", dx: -210, dy: -40 },
   { key: "wifi", side: "r", dx: 300, dy: -30 },
-  { key: "buzzers", side: "l", dx: -170, dy: -140 },
   { key: "varifocal", side: "l", dx: -260, dy: 170 },
 ];
 
@@ -188,7 +187,7 @@ export default function Hero() {
           {/* Mobile visual: assembled poster + spec list (no WebGL on small screens) */}
           <div className="relative mt-12 md:hidden">
             <div className="relative aspect-[4/3] w-full">
-              <Image src="/hero/poster-assembled.png" alt="The BusGuard unit: a weatherproof enclosure housing the camera, buzzers, antenna, and onboard compute." fill sizes="100vw" className="object-contain" />
+              <Image src="/hero/poster-assembled.png" alt="The BusGuard unit: a weatherproof enclosure housing the camera, antenna, and onboard compute." fill sizes="100vw" className="object-contain" />
             </div>
             <ul data-reveal="stagger" className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-[var(--line)]">
               {ORDER.map(({ key }, i) => (

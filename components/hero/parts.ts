@@ -235,32 +235,6 @@ export function buildWifiAntenna() {
   return grp;
 }
 
-export function buildBuzzerSet() {
-  const grp = new THREE.Group();
-  [[-0.24, 0, 0], [0, 0, 0.24], [0.24, 0, -0.09]].forEach((off) => {
-    const bg = new THREE.Group();
-    bg.add(M(C(0.112, 0.112, 0.082, 32), P.dark()));
-    const face = M(C(0.098, 0.098, 0.005, 32), P.inner());
-    face.position.y = 0.044;
-    bg.add(face);
-    [0.078, 0.055, 0.032].forEach((r) => {
-      const gr = M(T(r, 0.006, 8, 32), P.alu());
-      gr.position.y = 0.044;
-      gr.rotation.x = Math.PI / 2;
-      bg.add(gr);
-    });
-    const dome = M(g("dome", () => new THREE.SphereGeometry(0.022, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2)), P.accent());
-    dome.position.y = 0.047;
-    bg.add(dome);
-    const flange = M(B(0.285, 0.022, 0.098), P.alu());
-    flange.position.y = -0.052;
-    bg.add(flange);
-    bg.position.set(off[0], off[1], off[2]);
-    grp.add(bg);
-  });
-  return grp;
-}
-
 export function buildCamera() {
   const grp = new THREE.Group();
   const box = M(B(0.21, 0.19, 0.215), P.dark());
@@ -309,7 +283,7 @@ export function buildPiCamera() {
   return grp;
 }
 
-export type PieceKey = "pcb" | "edgeProc" | "accel" | "wifi" | "buzzers" | "varifocal" | "piCam";
+export type PieceKey = "pcb" | "edgeProc" | "accel" | "wifi" | "varifocal" | "piCam";
 
 /** Assembly order and the pose each piece flies in from (exploded) and locks to (final). */
 export const PIECES: { key: PieceKey; build: () => THREE.Group; final: [number[], number[]]; start: [number[], number[]] }[] = [
@@ -317,7 +291,6 @@ export const PIECES: { key: PieceKey; build: () => THREE.Group; final: [number[]
   { key: "edgeProc", build: buildEdgeProcessor, final: [[-0.58, -0.08, -0.12], [0, 0, 0]], start: [[-3.6, 0.9, -0.6], [0.2, -0.8, 0.3]] },
   { key: "accel", build: buildAccelerometer, final: [[0.48, 0.12, 0.22], [0, 0, 0]], start: [[3.3, 1.5, 0.4], [0.6, 0.9, 0.4]] },
   { key: "wifi", build: buildWifiAntenna, final: [[0.18, -0.3, 0.4], [0, 0, 0]], start: [[1.6, -2.6, 2.4], [0.7, 0.2, 0.3]] },
-  { key: "buzzers", build: buildBuzzerSet, final: [[-0.62, 0.24, 0.08], [0, -0.25, 0]], start: [[-3.0, 1.9, 1.0], [0.4, -0.8, 0.5]] },
   { key: "varifocal", build: buildCamera, final: [[0.5, 0.04, 0.38], [0, 0, 0]], start: [[2.9, 0.6, 3.4], [0.2, 0.7, 0.18]] },
   { key: "piCam", build: buildPiCamera, final: [[-1.06, 0.07, 0.09], [0, Math.PI / 2, 0]], start: [[-3.3, -1.6, 1.4], [0.6, Math.PI / 2 - 0.9, 0.3]] },
 ];

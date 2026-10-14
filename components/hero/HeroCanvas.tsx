@@ -31,12 +31,11 @@ const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 const ANCHORS: Partial<Record<CalloutKey, [number, number, number]>> = {
   housing: [-1.2, -0.3, 0.78],
   varifocal: [0.5, 0.04, 0.92],
-  buzzers: [-0.62, 0.3, 0.08],
   wifi: [0.18, 0.12, 0.4],
   edgeProc: [-0.58, 0.29, -0.12],
   pcb: [0.75, -0.38, 0.2],
 };
-const LOCK_AT: Record<PieceKey, number> = { pcb: 0, edgeProc: 0, accel: 0, wifi: 0, buzzers: 0, varifocal: 0, piCam: 0 };
+const LOCK_AT: Record<PieceKey, number> = { pcb: 0, edgeProc: 0, accel: 0, wifi: 0, varifocal: 0, piCam: 0 };
 PIECES.forEach((p, i) => (LOCK_AT[p.key] = 0.12 + i * 0.085 + 0.2));
 
 const DIR = new THREE.Vector3(0.5, 0.66, 0.68).normalize();

@@ -37,7 +37,6 @@ export const callouts = {
   pcb: { title: "Onboard compute", spec: "256 GB storage" },
   edgeProc: { title: "Edge processor", spec: "On-device CNN" },
   wifi: { title: "Antenna", spec: "4G LTE + WiFi" },
-  buzzers: { title: "Buzzers", spec: "100 dB" },
   varifocal: { title: "Camera", spec: "1080p wide-angle" },
 } as const;
 
