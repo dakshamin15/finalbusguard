@@ -63,7 +63,7 @@ function Caption({ H }: { H: "h1" | "h2" }) {
     <div className="frame grid-12 gap-y-5 pb-2 pt-8 md:pt-12">
       <div className="col-span-4 md:col-span-8 lg:col-span-7">
         <p className="eyebrow signal" data-reveal>
-          Presented at &middot; {expo.date}
+          Invited to attend &middot; {expo.date}
         </p>
         <H id="expo-title" tabIndex={H === "h1" ? -1 : undefined} data-reveal className="t-m mt-5 max-w-[24ch] text-fg" style={{ "--d": "120ms" } as CSSProperties}>
           {expo.caption}
