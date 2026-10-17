@@ -10,7 +10,7 @@ import { recognition } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Recognition",
-  description: "BusGuard presented at the U.S. DOT Road Safety Innovation Expo, was recognized in five competitions, and was featured on WRIC ABC 8News.",
+  description: "BusGuard attended the U.S. DOT Road Safety Innovation Expo, was recognized in five competitions, and was featured on WRIC ABC 8News.",
   alternates: { canonical: "/recognition" },
 };
 
