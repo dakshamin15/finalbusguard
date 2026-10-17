@@ -178,8 +178,8 @@ export const expo = {
   date: "September 18, 2026",
   dateShort: "Sep 2026",
   location: "U.S. DOT Headquarters, Washington, D.C.",
-  caption: "BusGuard presenting at the U.S. Department of Transportation Road Safety Innovation Expo.",
-  body: "BusGuard presented at the first U.S. Department of Transportation Road Safety Innovation Expo, a one-day showcase of life-saving transportation technology held at U.S. DOT Headquarters in Washington, D.C.",
+  caption: "BusGuard at the U.S. Department of Transportation Road Safety Innovation Expo.",
+  body: "BusGuard was invited to attend the first U.S. Department of Transportation Road Safety Innovation Expo, a one-day showcase of life-saving transportation technology held at U.S. DOT Headquarters in Washington, D.C.",
   alt: "The three BusGuard founders standing on stage in front of the U.S. Department of Transportation Road Safety Innovation Expo backdrop.",
   image: "/images/usdot_expo.jpg",
   disclaimer:
