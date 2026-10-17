@@ -8,7 +8,7 @@ Live site (https://www.busguard.net) vs. this local repo. Captured 2026-10-13 fr
 
 ## 0. Resolution log (2026-10-14)
 - **C2 Blue Ocean:** confirmed by the certificate image on the live site: "2026 Blue Ocean Student Entrepreneur Competition ... 23,000+ students from 173 countries". Now shown.
-- **C5 USDOT Expo:** confirmed at highways.dot.gov/usdotsafetyexpo: September 18, 2026, U.S. DOT Headquarters, Washington, D.C. The site uses "presented at" plus the Expo's own no-endorsement disclaimer.
+- **C5 USDOT Expo:** confirmed at highways.dot.gov/usdotsafetyexpo: September 18, 2026, U.S. DOT Headquarters, Washington, D.C. 
 - **C6/C7 Theme:** owner chose a warm light palette built on the logo orange (see DESIGN_PLAN.md revision).
 - **C8:** card retitled "The critical window", so it no longer contradicts its own "2-4 second" body.
 - **C1, C3, C4:** still using the live wording ("Top 10 of 875", "Top 6 in State", "211 trials").
